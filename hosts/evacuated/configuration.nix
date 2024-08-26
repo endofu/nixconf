@@ -45,10 +45,5 @@
     pkgs.openssl
  ];
   
- programs.git = {
-   enable = true;
-   package = pkgs.git;
-   config.user.name = "endofu";
-   config.user.email = "endofu@gmail.com";
- };
+
 }
