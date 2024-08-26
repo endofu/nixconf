@@ -32,12 +32,6 @@
     users = {
       "nixos" = import ./home.nix;
     };
-
-    # programs.git = {
-    #   enable=true;
-    #   userEmail="endofu@gmail.com";
-    #   userName="endofu";
-    # };
   };
 
 

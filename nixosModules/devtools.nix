@@ -11,14 +11,10 @@
       alacritty
       mc
       tmux
-      bat
-      ripgrep
-      fd
       lazygit
       lazydocker
       lazysql
       fzf
-      tmux
       nerdfonts
       neovim
       vimPlugins.LazyVim
