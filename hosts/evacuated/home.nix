@@ -79,5 +79,10 @@
     package = pkgs.git;
     userName = "endofu";
     userEmail = "endofu@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
+
+
 }
