@@ -7,6 +7,8 @@
 
   config = lib.mkIf config.basics.enable {
     environment.systemPackages = with pkgs; [
+      nix-index
+      nix-index-unwrapped
       zsh
       bat
       eza

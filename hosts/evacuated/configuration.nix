@@ -13,6 +13,12 @@
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.allowed-users = [
+    "root" 
+    "nixos"
+  ];
+
+  hardware.opengl.enable = true;
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
