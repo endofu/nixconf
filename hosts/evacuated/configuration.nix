@@ -18,7 +18,7 @@
     "nixos"
   ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
