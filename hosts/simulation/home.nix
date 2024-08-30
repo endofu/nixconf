@@ -82,7 +82,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       pull = {
-        ff-only = true;
+        rebase = true;
       };
     };
   };
