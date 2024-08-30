@@ -73,4 +73,18 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.git = {
+    enable = true;
+    package = pkgs.git;
+    userName = "endofu";
+    userEmail = "endofu@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+      pull = {
+        ff-only = true;
+      };
+    };
+  };
 }
+
