@@ -39,6 +39,18 @@
         ];
       };
 
+      elaine = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/elaine/configuration.nix
+          inputs.home-manager.nixosModules.default
+          ./nixosModules
+          nixos-wsl.nixosModules.default
+          # ./homeModules
+        ];
+      };
+
     };
   };
 }
