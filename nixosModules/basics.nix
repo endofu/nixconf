@@ -9,6 +9,9 @@
     environment.systemPackages = with pkgs; [
       nix-index
       nix-index-unwrapped
+      gnumake
+      gcc	
+      libgcc
       zsh
       bat
       eza
