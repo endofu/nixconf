@@ -19,6 +19,9 @@
           ./hosts/simulation/configuration.nix
           inputs.home-manager.nixosModules.default
           ./nixosModules
+	  {
+	    system.stateVersion = "24.05";
+	  }
           # ./homeModules
         ];
       };
