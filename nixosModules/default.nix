@@ -6,6 +6,7 @@
     # ./python.nix
     ./basics.nix
     ./podman.nix
+    ./media.nix
   ];
 
   devtools.enable = true;
@@ -13,4 +14,5 @@
   # python.enable = false;
   basics.enable = true;
   podman.enable = true;
+  media.enable = true;
 }
