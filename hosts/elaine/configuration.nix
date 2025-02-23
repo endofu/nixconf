@@ -149,15 +149,44 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nix.settings.nix-path = "nixpkgs=flake:nixpkgs";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     autorandr
     anydesk
+    cifs-utils
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
+  
+  fileSystems."/mnt/share" = {
+    device = "//10.0.0.6/TestSMB";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
 
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+  };
+
+  # Enable cron service
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      # "0 23 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 0 &> /home/elaine/elaine-voice/logs/cron-train-child.log"
+      "0 6 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 0 &> /home/elaine/elaine-voice/logs/cron-train-child.log"
+      "0 9 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 1 &> /home/elaine/elaine-voice/logs/cron-train-elaine.log"
+      "0 11 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 2 &> /home/elaine/elaine-voice/logs/cron-train-sumbisori.log"
+      "0 13 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 3 &> /home/elaine/elaine-voice/logs/cron-train-corona.log"
+      "0 16 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 4 &> /home/elaine/elaine-voice/logs/cron-train-respiratory.log"
+      "0 19 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 5 &> /home/elaine/elaine-voice/logs/cron-train-dys.log"
+      "0 21 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 6 &> /home/elaine/elaine-voice/logs/cron-train-mama.log"
+      "0 0 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 7 &> /home/elaine/elaine-voice/logs/cron-train-papa.log"
+      "0 3 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 8 &> /home/elaine/elaine-voice/logs/cron-train-birds.log"
+    ];
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
