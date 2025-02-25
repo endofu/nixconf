@@ -10,9 +10,14 @@
       lazygit
     ];
 
-    
-    # programs.starship = {
-    #   enable = true;
-    # };
+
+    home-manager.users.arcadia = {
+      programs = {
+        zed-editor = {
+          enable = true;
+          extensions = ["nix"];
+        };
+      };
+    };
   };
 }

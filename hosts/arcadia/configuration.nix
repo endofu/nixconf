@@ -34,11 +34,14 @@
     home = "/Users/arcadia";
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.arcadia = {
-    home = {
-      stateVersion = "25.05";
+  home-manager = {
+    useGlobalPkgs = true;
+    users.arcadia = {
+      home = {
+        stateVersion = "25.05";
+      };
+      programs.home-manager.enable = true;
     };
-    programs.home-manager.enable = true;
+    backupFileExtension = "backup";
   };
 }

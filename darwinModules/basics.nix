@@ -35,7 +35,7 @@
               push.autoSetupRemote = true;
           };
       };
-  };
+    };
 
     security.pam.enableSudoTouchIdAuth = true;
   };
