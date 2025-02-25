@@ -9,10 +9,10 @@
     ./media.nix
   ];
 
-  devtools.enable = true;
+  devtools.enable = false;
   # nodejs.enable = false;
   # python.enable = false;
   basics.enable = true;
-  podman.enable = true;
+  podman.enable = false;
   media.enable = true;
 }

@@ -7,6 +7,7 @@
 
   config = lib.mkIf config.basics.enable {
     environment.systemPackages = with pkgs; [
+      git
       nix-index
       nix-index-unwrapped
       gnumake
@@ -22,9 +23,5 @@
 
     # programs.zsh.enable = true;
     # users.defaultUserShell = pkgs.zsh;
-
-    programs.starship = {
-      enable = true;
-    };
   };
 }

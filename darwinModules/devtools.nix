@@ -7,15 +7,9 @@
 
   config = lib.mkIf config.devtools.enable {
     environment.systemPackages = with pkgs; [
-      mc
-      tmux
       lazygit
-      lazydocker
-      lazysql
-      fzf
-      nerdfonts
-      neovim
     ];
+
     
     # programs.starship = {
     #   enable = true;
