@@ -9,8 +9,7 @@
 
     homebrew = {
       casks = [
-        "wezterm"
-        "sublime-text"
+        "zen-browser"
       ];
     };
 

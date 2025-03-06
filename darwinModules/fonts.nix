@@ -6,9 +6,13 @@
   };
 
   config = lib.mkIf config.fonts.enable {
-    fonts.packages = [
-      pkgs.nerd-fonts._0xproto
-      pkgs.nerd-fonts.droid-sans-mono
+    fonts.packages = with pkgs; [
+      nerd-fonts.cousine
+      nerd-fonts.inconsolata
+      nerd-fonts.fira-code
+      nerd-fonts.hasklug
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.victor-mono
     ];
   };
 }

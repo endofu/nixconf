@@ -6,7 +6,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
   ];
-  
+
   # Auto upgrade nix package and the daemon service.
   nix.enable = false;
 
@@ -36,6 +36,7 @@
 
   home-manager = {
     useGlobalPkgs = true;
+    useUserPackages = true;
     users.arcadia = {
       home = {
         stateVersion = "25.05";

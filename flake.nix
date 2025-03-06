@@ -79,10 +79,10 @@
     darwinConfigurations =  {
       arcadia = nix-darwin.lib.darwinSystem {
   	  modules = [
-	    ./hosts/arcadia/configuration.nix
-          ./darwinModules
+	      ./hosts/arcadia/configuration.nix
+        ./darwinModules
 
-	    home-manager.darwinModules.home-manager
+	      home-manager.darwinModules.home-manager
 
           nix-homebrew.darwinModules.nix-homebrew {
             nix-homebrew = {
@@ -105,7 +105,7 @@
               mutableTaps = false;
             };
           }
-	  ];
+	      ];
       };
     };
   };

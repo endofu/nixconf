@@ -9,7 +9,7 @@
 
     homebrew = {
       casks = [
-        "zed"
+        # "zed"
       ];
     };
 

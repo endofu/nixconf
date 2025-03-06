@@ -12,7 +12,7 @@
 #      nix-index
 #      nix-index-unwrapped
 #      gnumake
-#      gcc	
+#      gcc
 #      libgcc
     ];
 
@@ -26,14 +26,34 @@
 
     home-manager.users.arcadia = {
       programs.git = {
-          enable = true;
-          userName = "endofu";
-          userEmail = "endofu@gmail.com";
-          ignores = [ ".DS_Store" ];
-          extraConfig = {
-              init.defaultBranch = "main";
-              push.autoSetupRemote = true;
+        enable = true;
+        userName = "endofu";
+        userEmail = "endofu@gmail.com";
+        ignores = [ ".DS_Store" ];
+        extraConfig = {
+          init.defaultBranch = "main";
+          pull.rebase = true;
+          column.ui = "auto";
+          branch.sort = "committerdate";
+          tag.sort = "version:refname";
+          # init.defaultBranch = "main";
+          diff = {
+            algorithm = "histogram";
+            colorMoved = "plain";
+            mnemonicPrefix = true;
+            renames = true;
           };
+          push = {
+            default = "simple";
+            autoSetupRemote = true;
+            followTags = true;
+          };
+          fetch = {
+            prune = true;
+            pruneTags = true;
+            all = true;
+          };
+        };
       };
     };
 
