@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ lib, config, ... }: {
 
   options = {
     homebrew-basic.enable =
@@ -10,6 +10,7 @@
     homebrew = {
       casks = [
         "zen-browser"
+        "dropbox"
       ];
     };
 
