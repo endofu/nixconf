@@ -10,6 +10,8 @@
     environment.systemPackages = with pkgs; [
       obsidian
       discord
+      zoom-us
+      # dropbox
     ];
   };
 }
