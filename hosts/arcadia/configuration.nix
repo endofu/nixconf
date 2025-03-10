@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{ ... }: {
 
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-  ];
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   # Auto upgrade nix package and the daemon service.
   nix.enable = false;
@@ -14,7 +14,7 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # Enable alternative shell support in nix-darwin.
-  programs.zsh.enable = true;
+  # programs.zsh.enable = true;
 
   # Set Git commit hash for darwin-version.
   # system.configurationRevision = self.rev or self.dirtyRev or null;

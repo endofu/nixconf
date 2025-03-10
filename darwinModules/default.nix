@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}: {
+{...}: {
 
   imports = [
     ./basics.nix
@@ -17,7 +17,7 @@
   fonts.enable = true;
   terminal.enable = true;
   devtools.enable = true;
-  zsh.enable = true;
+  zsh.enable = false;
   homebrew-basic.enable = true;
   homebrew-dev.enable = true;
 }

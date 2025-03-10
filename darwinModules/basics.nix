@@ -7,14 +7,16 @@
 
   config = lib.mkIf config.basics.enable {
     environment.systemPackages = with pkgs; [
-       git
-       openssl
-#      nix-index
-#      nix-index-unwrapped
+      git
+      openssl
+      nix-index
+      nix-index-unwrapped
 #      gnumake
 #      gcc
 #      libgcc
     ];
+
+    security.pam.enableSudoTouchIdAuth = true;
 
     homebrew = {
       enable = true;
@@ -56,7 +58,5 @@
         };
       };
     };
-
-    security.pam.enableSudoTouchIdAuth = true;
   };
 }
