@@ -24,6 +24,9 @@
       ripgrep
       nushell
       zoxide
+      dust
+      duf
+      ncdu
     ];
 
     home-manager.users.arcadia = {
