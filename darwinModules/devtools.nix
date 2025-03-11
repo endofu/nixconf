@@ -1,6 +1,9 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
 
-  options = { devtools.enable = lib.mkEnableOption "enables devtools bundle"; };
+  options = {
+    devtools.enable = lib.mkEnableOption "enables devtools bundle";
+  };
 
   config = lib.mkIf config.devtools.enable {
 
@@ -8,13 +11,23 @@
       programs = {
         zed-editor = {
           enable = true;
-          extensions = [ "nix" "toml" "fleet-themes" "modus-themes"];
+          extensions = [
+            "nix"
+            "toml"
+            "kanagawa-themes"
+          ];
           userSettings = {
             hour_format = "hour24";
             auto_update = false;
-            telemetry = { metrics = false; };
+            telemetry = {
+              metrics = false;
+            };
             vim_mode = true;
-            autosave = { after_delay = { milliseconds = 1000; }; };
+            autosave = {
+              after_delay = {
+                milliseconds = 1000;
+              };
+            };
             formatter = "language_server";
             format_on_save = true;
             lsp = {
@@ -25,24 +38,36 @@
                   path_lookup = true;
                 };
               };
-              nix = { binary = { path_lookup = true; }; };
+              nix = {
+                binary = {
+                  path_lookup = true;
+                };
+              };
               nil = {
                 initialization_options = {
-                  formatting = { command = [ "nixfmt" ]; };
-                  nix = { flake = { autoArchive = true; }; };
+                  formatting = {
+                    command = [ "nixfmt" ];
+                  };
+                  nix = {
+                    flake = {
+                      autoArchive = true;
+                    };
+                  };
                 };
               };
             };
             theme = {
               mode = "system";
-              light = "Modus Operandi";
-              dark = "Fleet Dark Purple";
+              light = "Kanagawa Lotus";
+              dark = "Kanagawa Wave";
             };
 
           };
         };
 
-        lazygit = { enable = true; };
+        lazygit = {
+          enable = true;
+        };
       };
     };
   };
