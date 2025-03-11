@@ -8,7 +8,7 @@
       programs = {
         zed-editor = {
           enable = true;
-          extensions = [ "nix" "toml" ];
+          extensions = [ "nix" "toml" "fleet-themes" "modus-themes"];
           userSettings = {
             hour_format = "hour24";
             auto_update = false;
@@ -35,8 +35,8 @@
             };
             theme = {
               mode = "system";
-              light = "One Light";
-              dark = "One Dark";
+              light = "Modus Operandi";
+              dark = "Fleet Dark Purple";
             };
 
           };
