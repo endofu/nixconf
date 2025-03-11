@@ -11,6 +11,7 @@
       casks = [
         "zen-browser"
         "dropbox"
+        "ticktick"
       ];
     };
 
