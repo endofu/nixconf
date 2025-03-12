@@ -12,6 +12,7 @@
       discord
       zoom-us
       raycast
+      arc-browser
       # dropbox
     ];
   };
