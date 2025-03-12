@@ -11,6 +11,7 @@
       obsidian
       discord
       zoom-us
+      raycast
       # dropbox
     ];
   };
