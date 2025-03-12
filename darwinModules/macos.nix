@@ -23,9 +23,11 @@
         AppleShowAllFiles = true;
         _FXSortFoldersFirst = true;
         FXDefaultSearchScope = "SCcf";
+        _FXShowPosixPathInTitle = true;
       };
       NSGlobalDomain = {
-        KeyRepeat = 1;
+        KeyRepeat = 2;
+        InitialKeyRepeat = 15;
       };
       trackpad = {
         TrackpadRightClick = true;
