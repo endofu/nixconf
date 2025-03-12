@@ -13,6 +13,9 @@
         "dropbox"
         "ticktick"
       ];
+      masApps = {
+        "Paste - Endless Clipboard" = 967805235;
+      };
     };
 
   };
