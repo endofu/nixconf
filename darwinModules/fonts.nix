@@ -13,6 +13,10 @@
       nerd-fonts.hasklug
       nerd-fonts.jetbrains-mono
       nerd-fonts.victor-mono
+      nerd-fonts.blex-mono
+      nerd-fonts.im-writing
+      nerd-fonts.mplus
+      nerd-fonts.monaspace
     ];
   };
 }

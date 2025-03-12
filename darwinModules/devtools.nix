@@ -15,6 +15,7 @@
             "nix"
             "toml"
             "kanagawa-themes"
+            "not-material-theme"
           ];
           userSettings = {
             hour_format = "hour24";
@@ -56,9 +57,11 @@
                 };
               };
             };
+            buffer_font_family = "MonaspiceNe Nerd Font";
+            ui_font_family = "MonaspiceXE Nerd Font";
             theme = {
               mode = "system";
-              light = "Kanagawa Lotus";
+              light = "Not Material Light Cyan";
               dark = "Kanagawa Wave";
             };
 
