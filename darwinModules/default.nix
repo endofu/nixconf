@@ -2,6 +2,7 @@
 
   imports = [
     ./basics.nix
+    ./macos.nix
     ./personal.nix
     ./fonts.nix
     ./terminal.nix
@@ -13,6 +14,7 @@
   ];
 
   basics.enable = true;
+  macos.enable = true;
   personal.enable = true;
   fonts.enable = true;
   terminal.enable = true;
