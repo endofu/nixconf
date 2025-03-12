@@ -27,6 +27,8 @@
       dust
       duf
       ncdu
+      btop
+      htop
     ];
 
     environment.shellAliases = {
