@@ -29,6 +29,13 @@
       ncdu
     ];
 
+    environment.shellAliases = {
+      mc = "mc --nosubshell";
+      ls = "lsd -al";
+      lst = "lsd -al --tree";
+      cat = "bat";
+    };
+
     home-manager.users.arcadia = {
       programs = {
         wezterm = {
