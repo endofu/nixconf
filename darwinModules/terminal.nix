@@ -29,6 +29,7 @@
       ncdu
       btop
       htop
+      nowplaying-cli # this is needed for the tokyo-night-tmux plugin
     ];
 
     environment.shellAliases = {
@@ -42,6 +43,33 @@
       programs = {
         wezterm = {
           enable = true;
+          extraConfig = ''
+            return {
+              window_background_opacity = 0.8,
+              macos_window_background_blur = 20,
+              font = wezterm.font("BlexMono Nerd Font Mono"),
+              font_size = 14.0,
+              cell_width = 0.9,
+              color_scheme = "Tokyo Night Storm",
+              native_macos_fullscreen_mode = true,
+              hide_tab_bar_if_only_one_tab = true,
+              window_decorations = "RESIZE"
+            }
+          '';
+        };
+
+        kitty = {
+          enable = true;
+          shellIntegration.enableZshIntegration = true;
+          font = {
+            name = "VictorMono Nerd Font Mono";
+            size = 13;
+          };
+          themeFile = "Spacedust";
+          settings = {
+            enable_audio_bell = false;
+            update_check_interval = 0;
+          };
         };
 
         tmux = {
@@ -54,22 +82,15 @@
           terminal = "tmux-256color";
 
           extraConfig = ''
-                          # set-option -g default-terminal 'screen-256color'
-                          set-option -g terminal-overrides ',xterm-256color:RGB'
-                          set -gu default-command
-
-                          set -g detach-on-destroy off     # don't exit from tmux when closing a session
-                          set -g renumber-windows on       # renumber all windows when any window is closed
-                          set -g set-clipboard on          # use system clipboard
-                          set -g status-position top       # macOS / darwin style
-                          setw -g mode-keys vi
-                          set -g pane-active-border-style 'fg=magenta,bg=default'
-                          set -g pane-border-style 'fg=brightblack,bg=default'
-
-            #             # set -g @fzf-url-fzf-options '-p 60%,30% --prompt="   " --border-label=" Open URL "'
-            #             # set -g @fzf-url-history-limit '2000'
-
-            #             bind s choose-session
+            set-option -g terminal-overrides ',xterm-256color:RGB'
+            set -gu default-command
+            set -g detach-on-destroy off     # don't exit from tmux when closing a session
+            set -g renumber-windows on       # renumber all windows when any window is closed
+            set -g set-clipboard on          # use system clipboard
+            set -g status-position top       # macOS / darwin style
+            setw -g mode-keys vi
+            set -g pane-active-border-style 'fg=magenta,bg=default'
+            set -g pane-border-style 'fg=brightblack,bg=default'
           '';
 
           plugins = with pkgs; [
@@ -77,27 +98,57 @@
             tmuxPlugins.copycat
             tmuxPlugins.yank
             # must be before continuum edits right status bar
+            # {
+            #   plugin = tmuxPlugins.catppuccin;
+            #   extraConfig = ''
+            #     set -g @catppuccin_window_left_separator ""
+            #     set -g @catppuccin_window_right_separator " "
+            #     set -g @catppuccin_window_middle_separator "█"
+            #     set -g @catppuccin_window_number_position "left"
+            #     set -g @catppuccin_window_default_fill "number"
+            #     set -g @catppuccin_window_default_text " #W"
+            #     set -g @catppuccin_window_current_fill "number"
+            #     set -g @catppuccin_window_current_text " #W#{?window_zoomed_flag,(),}"
+            #     set -g @catppuccin_status_modules_right "directory meetings date_time"
+            #     set -g @catppuccin_status_modules_left "session"
+            #     set -g @catppuccin_status_left_separator  " "
+            #     set -g @catppuccin_status_right_separator " "
+            #     set -g @catppuccin_status_right_separator_inverse "no"
+            #     set -g @catppuccin_status_fill "icon"
+            #     set -g @catppuccin_status_connect_separator "no"
+            #     set -g @catppuccin_directory_text "#{b:pane_current_path}"
+            #     set -g @catppuccin_date_time_text "%H:%M"
+            #   '';
+            # }
             {
-              plugin = tmuxPlugins.catppuccin;
+              plugin = tmuxPlugins.tokyo-night-tmux;
               extraConfig = ''
-                set -g @catppuccin_window_left_separator ""
-                set -g @catppuccin_window_right_separator " "
-                set -g @catppuccin_window_middle_separator "█"
-                set -g @catppuccin_window_number_position "left"
-                set -g @catppuccin_window_default_fill "number"
-                set -g @catppuccin_window_default_text " #W"
-                set -g @catppuccin_window_current_fill "number"
-                set -g @catppuccin_window_current_text " #W#{?window_zoomed_flag,(),}"
-                set -g @catppuccin_status_modules_right "directory meetings date_time"
-                set -g @catppuccin_status_modules_left "session"
-                set -g @catppuccin_status_left_separator  " "
-                set -g @catppuccin_status_right_separator " "
-                set -g @catppuccin_status_right_separator_inverse "no"
-                set -g @catppuccin_status_fill "icon"
-                set -g @catppuccin_status_connect_separator "no"
-                set -g @catppuccin_directory_text "#{b:pane_current_path}"
-                set -g @catppuccin_date_time_text "%H:%M"
-              '';
+                				set -g @tokyo-night-tmux_theme storm
+                                set -g @tokyo-night-tmux_transparent 1
+                                set -g @tokyo-night-tmux_window_id_style fsquare
+                                set -g @tokyo-night-tmux_pane_id_style dsquare
+                                set -g @tokyo-night-tmux_zoom_id_style dsquare
+
+                                # Icon styles
+                                set -g @tokyo-night-tmux_terminal_icon 
+                                set -g @tokyo-night-tmux_active_terminal_icon 
+
+                                # No extra spaces between icons
+                                set -g @tokyo-night-tmux_window_tidy_icons 0
+
+                                set -g @tokyo-night-tmux_show_datetime 0
+                                set -g @tokyo-night-tmux_date_format MYD
+                                set -g @tokyo-night-tmux_time_format 12H
+
+                                set -g @tokyo-night-tmux_show_path 1
+                                set -g @tokyo-night-tmux_path_format relative # 'relative' or 'full'
+
+                                set -g @tokyo-night-tmux_show_battery_widget false
+                                # set -g @tokyo-night-tmux_battery_name "BAT1"  # some linux distro have 'BAT0'
+                                # set -g @tokyo-night-tmux_battery_low_threshold 21 # default
+
+                                set -g @tokyo-night-tmux_show_hostname 0
+                  			'';
             }
             {
               plugin = tmuxPlugins.resurrect;
