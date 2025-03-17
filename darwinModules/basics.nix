@@ -1,8 +1,13 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
 
   options = {
-    basics.enable =
-      lib.mkEnableOption "enables basics bundle";
+    basics.enable = lib.mkEnableOption "enables basics bundle";
   };
 
   config = lib.mkIf config.basics.enable {
@@ -11,9 +16,9 @@
       openssl
       nix-index
       nix-index-unwrapped
-#      gnumake
-#      gcc
-#      libgcc
+      #      gnumake
+      #      gcc
+      #      libgcc
     ];
 
     security.pam.enableSudoTouchIdAuth = true;

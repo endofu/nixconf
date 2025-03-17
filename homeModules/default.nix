@@ -1,4 +1,5 @@
-{ pkgs, ...}: {
+{ ... }:
+{
 
   imports = [
     ./features/git.nix

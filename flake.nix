@@ -29,84 +29,96 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, nix-darwin, home-manager, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, ... }@inputs: {
-    nixosConfigurations = {
-      simulation = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/simulation/configuration.nix
-          home-manager.nixosModules.default
-          ./nixosModules
-	  {
-	    system.stateVersion = "24.05";
-	  }
-          # ./homeModules
-        ];
+  outputs =
+    {
+      nixpkgs,
+      nixos-wsl,
+      nix-darwin,
+      home-manager,
+      nix-homebrew,
+      homebrew-core,
+      homebrew-cask,
+      homebrew-bundle,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        simulation = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/simulation/configuration.nix
+            home-manager.nixosModules.default
+            ./nixosModules
+            {
+              system.stateVersion = "24.05";
+            }
+            # ./homeModules
+          ];
+        };
+
+        evacuated = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/evacuated/configuration.nix
+            home-manager.nixosModules.default
+            ./nixosModules
+            nixos-wsl.nixosModules.default
+            {
+              system.stateVersion = "23.11";
+              wsl.enable = true;
+            }
+            # ./homeModules
+          ];
+        };
+
+        elaine = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/elaine/configuration.nix
+            home-manager.nixosModules.default
+            ./nixosModules
+            nixos-wsl.nixosModules.default
+            # ./homeModules
+          ];
+        };
       };
 
-      evacuated = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/evacuated/configuration.nix
-          home-manager.nixosModules.default
-          ./nixosModules
-          nixos-wsl.nixosModules.default
-          {
-            system.stateVersion = "23.11";
-            wsl.enable = true;
-          }
-          # ./homeModules
-        ];
-      };
+      darwinConfigurations = {
+        arcadia = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./hosts/arcadia/configuration.nix
+            ./darwinModules
+            
+            home-manager.darwinModules.home-manager
+            
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                # Install Homebrew under the default prefix
+                enable = true;
 
-      elaine = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/elaine/configuration.nix
-          home-manager.nixosModules.default
-          ./nixosModules
-          nixos-wsl.nixosModules.default
-          # ./homeModules
-        ];
-      };
-    };
+                # User owning the Homebrew prefix
+                user = "arcadia";
 
-    darwinConfigurations =  {
-      arcadia = nix-darwin.lib.darwinSystem {
-  	  modules = [
-	      ./hosts/arcadia/configuration.nix
-        ./darwinModules
+                # Optional: Declarative tap management
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
 
-	      home-manager.darwinModules.home-manager
-
-          nix-homebrew.darwinModules.nix-homebrew {
-            nix-homebrew = {
-              # Install Homebrew under the default prefix
-              enable = true;
-
-              # User owning the Homebrew prefix
-              user = "arcadia";
-
-              # Optional: Declarative tap management
-              taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
-                "homebrew/homebrew-bundle" = homebrew-bundle;
+                # Optional: Enable fully-declarative tap management
+                #
+                # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+                mutableTaps = false;
               };
-
-              # Optional: Enable fully-declarative tap management
-              #
-              # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-              mutableTaps = false;
-            };
-          }
-	      ];
+            }
+          ];
+        };
       };
     };
-  };
 }
