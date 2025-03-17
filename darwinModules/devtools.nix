@@ -14,8 +14,7 @@
           extensions = [
             "nix"
             "toml"
-            "kanagawa-themes"
-            "not-material-theme"
+            "oxocarbon"
           ];
           userSettings = {
             hour_format = "hour24";
@@ -57,12 +56,13 @@
                 };
               };
             };
-            buffer_font_family = "MonaspiceNe Nerd Font";
-            ui_font_family = "MonaspiceXE Nerd Font";
+            buffer_font_family = "BlexMono Nerd Font Mono";
+            # ui_font_family = "MonaspiceXE Nerd Font";
+            relative_line_numbers = true;
             theme = {
               mode = "system";
-              light = "Not Material Light Cyan";
-              dark = "Kanagawa Wave";
+              light = "Oxocarbon Light (Variation I)";
+              dark = "Oxocarbon Dark (IBM Carbon)";
             };
 
           };
