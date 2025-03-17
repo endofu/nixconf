@@ -16,6 +16,7 @@
       openssl
       nix-index
       nix-index-unwrapped
+      nh
       #      gnumake
       #      gcc
       #      libgcc
