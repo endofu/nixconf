@@ -12,6 +12,7 @@
         "zen-browser"
         "dropbox"
         "ticktick"
+        "teamviewer"
       ];
       masApps = {
         "Paste - Endless Clipboard" = 967805235;
