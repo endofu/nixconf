@@ -32,14 +32,6 @@
       nowplaying-cli # this is needed for the tokyo-night-tmux plugin
     ];
 
-    environment.shellAliases = {
-      mc = "mc --nosubshell";
-      ls = "lsd -al";
-      lst = "lsd -al --tree";
-      cat = "bat";
-      nvim = "nix run ~/Code/nixconf/nvf"; # this should be referenced relatively
-    };
-
     home-manager.users.arcadia = {
       programs = {
         wezterm = {
@@ -138,15 +130,6 @@
                 set -g @resurrect-capture-pane-contents 'on'
               '';
             }
-            {
-              plugin = tmuxPlugins.continuum;
-              extraConfig = ''
-                set -g @continuum-restore 'on'
-                # set -g @continuum-boot 'on'
-                set -g @continuum-save-interval '10'
-              '';
-            }
-
             tmuxPlugins.tmux-thumbs
             tmuxPlugins.tmux-fzf
             tmuxPlugins.fzf-tmux-url
@@ -171,6 +154,14 @@
           history = {
             size = 100000;
             save = 2000000;
+          };
+
+          shellAliases = {
+            mc = "mc --nosubshell";
+            ls = "lsd -al";
+            lst = "lsd -al --tree";
+            cat = "bat";
+            nvim = "nix run ~/Code/nixconf/nvf"; # this should be referenced relatively
           };
         };
 
