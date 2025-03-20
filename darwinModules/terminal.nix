@@ -79,14 +79,14 @@
           historyLimit = 20000;
           escapeTime = 0;
           baseIndex = 1;
-          newSession = true;
+          newSession = false;
           terminal = "tmux-256color";
           shell = "${pkgs.zsh}/bin/zsh";
 
           extraConfig = ''
             set-option -g terminal-overrides ',xterm-256color:RGB'
             set -gu default-command
-            # set -g default-command zsh
+            # set -g default-command "reattach-to-user-namespace -l ${pkgs.zsh}/bin/zsh"
             set -g detach-on-destroy off     # don't exit from tmux when closing a session
             set -g renumber-windows on       # renumber all windows when any window is closed
             set -g set-clipboard on          # use system clipboard
@@ -181,6 +181,8 @@
       };
       home.file = {
         ".config/starship.toml".source = ../dotfiles/jetpack.toml;
+        ".local/share/mc/skins/ajnasz-blue.ini".source = ../dotfiles/ajnasz-blue.ini;
+        ".config/mc/ini".source = ../dotfiles/mc.ini;
       };
     };
   };
