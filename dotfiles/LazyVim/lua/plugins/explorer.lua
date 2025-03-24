@@ -2,9 +2,9 @@ return {
   "folke/snacks.nvim",
   ---@type snacks.Config
   opts = {
-    dashboard = {
-      enabled = false,
-    },
+    -- dashboard = {
+    --   enabled = true,
+    -- },
     explorer = {
       layout = {
         preset = "right",
