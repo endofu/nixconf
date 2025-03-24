@@ -18,17 +18,17 @@ return {
   -- { "zacanger/angr.vim" },
   -- { "miikanissi/modus-themes.nvim", priority = 1000 },
   -- { "jacoborus/tender.vim" },
-  {
-    "ribru17/bamboo.nvim",
-    lazy = false,
-    priority = 1001,
-    config = function()
-      require("bamboo").setup({
-        -- optional configuration here
-      })
-      require("bamboo").load()
-    end,
-  },
+  -- {
+  --   "ribru17/bamboo.nvim",
+  --   lazy = false,
+  --   priority = 1001,
+  --   config = function()
+  --     require("bamboo").setup({
+  --       -- optional configuration here
+  --     })
+  --     require("bamboo").load()
+  --   end,
+  -- },
   -- {
   --   "marko-cerovac/material.nvim",
   --   lazy = false,
