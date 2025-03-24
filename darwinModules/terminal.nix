@@ -161,7 +161,7 @@
             ls = "lsd -al";
             lst = "lsd -al --tree";
             cat = "bat";
-            nvim = "nix run ~/Code/nixconf/nvf"; # this should be referenced relatively
+            vim = "nix run ~/Code/nixconf/nvf"; # this should be referenced relatively
           };
         };
 

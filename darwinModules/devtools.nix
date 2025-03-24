@@ -71,7 +71,16 @@
         lazygit = {
           enable = true;
         };
+        
+        neovim = {
+          enable = true;
+        };
       };
+      home.file.".config/nvim" = {
+          source = ../dotfiles/LazyVim;
+          recursive = true;
+        };
+      
     };
   };
 }
