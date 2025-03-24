@@ -13,6 +13,7 @@
           enable = true;
           extensions = [
             "nix"
+            "lua"
             "toml"
             "oxocarbon"
           ];
