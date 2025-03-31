@@ -75,6 +75,8 @@
         
         neovim = {
           enable = true;
+          withNodeJs = true;
+          withPython3 = true;
         };
       };
       home.file.".config/nvim" = {
