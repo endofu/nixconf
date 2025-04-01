@@ -15,12 +15,12 @@
       nixd
       nil
       nixfmt-rfc-style
+      tree
       mc
       bat
       eza
       lsd
       fd
-      fzf
       ripgrep
       nushell
       zoxide
@@ -143,6 +143,23 @@
               '';
             }
           ];
+        };
+
+
+        fzf = {
+          enable = true;
+          enableZshIntegration = true;
+          fileWidgetCommand = "fd --type f";
+          fileWidgetOptions = [
+            "--preview 'bat --style=full --color=always --line-range :500 {}'"
+          ];
+          changeDirWidgetCommand = "fd --type d";
+          changeDirWidgetOptions = [
+            "--preview 'tree -C {} | head -200'"
+          ];
+          tmux = {
+            enableShellIntegration = true;
+          };
         };
 
         zsh = {
