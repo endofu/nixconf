@@ -145,13 +145,12 @@
           ];
         };
 
-
         fzf = {
           enable = true;
           enableZshIntegration = true;
           fileWidgetCommand = "fd --type f";
           fileWidgetOptions = [
-            "--preview 'bat --style=full --color=always --line-range :500 {}'"
+            "--preview 'bat --style=full  --theme=DarkNeon --color=always --line-range :500 {}'"
           ];
           changeDirWidgetCommand = "fd --type d";
           changeDirWidgetOptions = [
