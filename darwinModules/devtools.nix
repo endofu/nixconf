@@ -82,6 +82,24 @@
 
         lazygit = {
           enable = true;
+          settings = {
+            gui = {
+              showRandomTip = false;
+              showNumstatInFilesView = true;
+              showBottomLine = false;
+              showPanelJumps = false;
+              nerdFontsVersion = "3";
+              showDivergenceFromBaseBranch = "arrowAndNumber";
+              filterMode = "fuzzy";
+            };
+            git = {
+              paging = {
+                externalDiffCommand = "difft --color=always";
+              };
+              parseEmoji = true;
+
+            };
+          };
         };
 
         neovim = {

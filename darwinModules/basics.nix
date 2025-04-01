@@ -28,6 +28,8 @@
       enable = true;
 
       onActivation = {
+        autoUpdate = true;
+        upgrade = true;
         cleanup = "uninstall";
       };
     };
@@ -38,6 +40,10 @@
         userName = "endofu";
         userEmail = "endofu@gmail.com";
         ignores = [ ".DS_Store" ];
+        difftastic = {
+          enable = true;
+          # enableAsDifftool = true;
+        };
         extraConfig = {
           init.defaultBranch = "main";
           pull.rebase = true;
@@ -46,10 +52,11 @@
           tag.sort = "version:refname";
           # init.defaultBranch = "main";
           diff = {
-            algorithm = "histogram";
-            colorMoved = "plain";
-            mnemonicPrefix = true;
-            renames = true;
+            # external = "difft";
+            # algorithm = "histogram";
+            # colorMoved = "plain";
+            # mnemonicPrefix = true;
+            # renames = true;
           };
           push = {
             default = "simple";
