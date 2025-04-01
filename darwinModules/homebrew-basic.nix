@@ -14,6 +14,7 @@
         "ticktick"
         "teamviewer"
         "anydesk"
+        "displaylink"
       ];
       masApps = {
         "Paste - Endless Clipboard" = 967805235;
