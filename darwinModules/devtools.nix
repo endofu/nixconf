@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
 
   options = {
@@ -6,6 +11,11 @@
   };
 
   config = lib.mkIf config.devtools.enable {
+
+    environment.systemPackages = with pkgs; [
+      rustc
+      cargo
+    ];
 
     home-manager.users.arcadia = {
       programs = {
@@ -72,7 +82,7 @@
         lazygit = {
           enable = true;
         };
-        
+
         neovim = {
           enable = true;
           withNodeJs = true;
@@ -80,10 +90,10 @@
         };
       };
       home.file.".config/nvim" = {
-          source = ../dotfiles/LazyVim;
-          recursive = true;
-        };
-      
+        source = ../dotfiles/LazyVim;
+        recursive = true;
+      };
+
     };
   };
 }
