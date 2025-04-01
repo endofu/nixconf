@@ -15,6 +15,7 @@
     environment.systemPackages = with pkgs; [
       rustc
       cargo
+      go
     ];
 
     home-manager.users.arcadia = {
