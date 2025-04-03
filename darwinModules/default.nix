@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
 
   imports = [
     ./basics.nix
@@ -9,7 +10,7 @@
     ./devtools.nix
     ./homebrew-basic.nix
     ./homebrew-dev.nix
-
+    ./aerospace.nix
   ];
 
   basics.enable = true;
@@ -20,4 +21,5 @@
   devtools.enable = true;
   homebrew-basic.enable = true;
   homebrew-dev.enable = true;
+  aerospace.enable = true;
 }
