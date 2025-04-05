@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -34,6 +35,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-stable,
       nixos-wsl,
       nix-darwin,
       home-manager,
@@ -89,12 +91,14 @@
 
       darwinConfigurations = {
         arcadia = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
+
           modules = [
             ./hosts/arcadia/configuration.nix
             ./darwinModules
-            
+
             home-manager.darwinModules.home-manager
-            
+
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {

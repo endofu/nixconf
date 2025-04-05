@@ -11,6 +11,7 @@
     ./homebrew-basic.nix
     ./homebrew-dev.nix
     ./aerospace.nix
+    ./karabiner.nix
   ];
 
   basics.enable = true;
@@ -22,4 +23,5 @@
   homebrew-basic.enable = true;
   homebrew-dev.enable = true;
   aerospace.enable = true;
+  karabiner.enable = true;
 }
