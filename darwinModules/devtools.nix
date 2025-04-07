@@ -86,7 +86,7 @@
             gui = {
               showRandomTip = false;
               showNumstatInFilesView = true;
-              showBottomLine = false;
+              showBottomLine = true;
               showPanelJumps = false;
               nerdFontsVersion = "3";
               showDivergenceFromBaseBranch = "arrowAndNumber";
