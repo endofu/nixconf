@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   inputs,
   ...
 }:
@@ -19,14 +18,10 @@
       })
     ];
 
-    environment.systemPackages = with pkgs; [
-      # karabiner-elements
-    ];
-
     services.karabiner-elements.enable = true;
 
     # home-manager.users.arcadia = {
-    #
+    # TODO: add json to home folder
     # };
   };
 }
