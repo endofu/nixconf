@@ -37,6 +37,26 @@
               ctrl-alt-f = "workspace Finder";
               ctrl-alt-n = "workspace Notes";
               ctrl-alt-t = "workspace Tasks";
+
+              ctrl-alt-1 = "workspace 1";
+              ctrl-alt-2 = "workspace 2";
+              ctrl-alt-3 = "workspace 3";
+              ctrl-alt-4 = "workspace 4";
+              ctrl-alt-5 = "workspace 5";
+              ctrl-alt-6 = "workspace 6";
+              ctrl-alt-7 = "workspace 7";
+              ctrl-alt-8 = "workspace 8";
+              ctrl-alt-9 = "workspace 9";
+
+              ctrl-shift-alt-1 = "move-node-to-workspace 1";
+              ctrl-shift-alt-2 = "move-node-to-workspace 2";
+              ctrl-shift-alt-3 = "move-node-to-workspace 3";
+              ctrl-shift-alt-4 = "move-node-to-workspace 4";
+              ctrl-shift-alt-5 = "move-node-to-workspace 5";
+              ctrl-shift-alt-6 = "move-node-to-workspace 6";
+              ctrl-shift-alt-7 = "move-node-to-workspace 7";
+              ctrl-shift-alt-8 = "move-node-to-workspace 8";
+              ctrl-shift-alt-9 = "move-node-to-workspace 9";
             };
             on-window-detected = [
               {
