@@ -176,15 +176,6 @@
     enable = true;
     systemCronJobs = [
       # "0 23 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 0 &> /home/elaine/elaine-voice/logs/cron-train-child.log"
-      "0 6 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 0 &> /home/elaine/elaine-voice/logs/cron-train-child.log"
-      "0 9 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 1 &> /home/elaine/elaine-voice/logs/cron-train-elaine.log"
-      "0 11 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 2 &> /home/elaine/elaine-voice/logs/cron-train-sumbisori.log"
-      "0 13 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 3 &> /home/elaine/elaine-voice/logs/cron-train-corona.log"
-      "0 16 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 4 &> /home/elaine/elaine-voice/logs/cron-train-respiratory.log"
-      "0 19 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 5 &> /home/elaine/elaine-voice/logs/cron-train-dys.log"
-      "0 21 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 6 &> /home/elaine/elaine-voice/logs/cron-train-mama.log"
-      "0 0 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 7 &> /home/elaine/elaine-voice/logs/cron-train-papa.log"
-      "0 3 * * *     elaine   sh /home/elaine/elaine-voice/train_runner.sh 8 &> /home/elaine/elaine-voice/logs/cron-train-birds.log"
     ];
   };
   # Some programs need SUID wrappers, can be configured further or are
@@ -206,6 +197,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+      
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

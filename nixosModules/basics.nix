@@ -7,11 +7,8 @@
 
   config = lib.mkIf config.basics.enable {
     environment.systemPackages = with pkgs; [
-      git
-      nix-index
-      nix-index-unwrapped
       gnumake
-      gcc	
+      gcc
       libgcc
       zsh
       bat

@@ -12,19 +12,15 @@
 
   config = lib.mkIf config.basics.enable {
     environment.systemPackages = with pkgs; [
+      git
+      openssl
+      nix-index
+      nix-index-unwrapped
+      nh
+      #      gnumake
+      #      gcc
+      #      libgcc
     ];
-
-    security.pam.enableSudoTouchIdAuth = true;
-
-    homebrew = {
-      enable = true;
-
-      onActivation = {
-        autoUpdate = true;
-        upgrade = true;
-        cleanup = "uninstall";
-      };
-    };
 
     home-manager.users.arcadia = {
       programs.git = {

@@ -82,8 +82,9 @@
           modules = [
             ./hosts/elaine/configuration.nix
             home-manager.nixosModules.default
+            ./commonModules
             ./nixosModules
-            nixos-wsl.nixosModules.default
+            # nixos-wsl.nixosModules.default
             # ./homeModules
           ];
         };
