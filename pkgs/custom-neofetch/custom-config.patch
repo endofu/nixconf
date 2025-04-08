@@ -1,0 +1,40 @@
+diff --git a/neofetch b/neofetch
+index 3935b3a7..f13e6da5 100755
+--- a/neofetch
++++ b/neofetch
+@@ -58,7 +58,7 @@ LC_ALL=C
+ LC_NUMERIC=C
+
+ # Default values.
+-os_file=\${XDG_CONFIG_HOME:-\${HOME}/.config}/neofetch/config.conf
++os_file=\${XDG_CONFIG_HOME:-\${HOME}/.config}/neofetch/config.conf # Custom config
+
+ # Check for config.
+ [[ -f \$os_file ]] && source \$os_file
+
+@@ -159,7 +159,7 @@ fi
+
+ print_info() {
+     info title
+-    info underline
++    info underline # Custom separator
+
+     info "OS" distro
+     info "Host" model
+@@ -171,6 +171,7 @@ print_info() {
+     info "Resolution" resolution
+     info "DE" de
+     info "WM" wm
++    info "WM Theme" wm_theme # Added WM Theme
+     info "WM Theme" wm_theme
+     info "Theme" theme
+     info "Icons" icons
+@@ -208,7 +209,7 @@ bar_color_elapsed="distro"
+ # Values:   'distro', 'num' 'num' 'num' 'num' 'num' 'num'
+ # Flag:     --bar_colors
+ #
+-bar_colors=(distro 5 4 3 2 1)
++bar_colors=(distro 6 5 4 3 2) # Custom bar colors
+
+ # Info display
+ # Display a bar with the info.
