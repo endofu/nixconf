@@ -39,18 +39,18 @@ in {
   
   # NixOS-specific settings
   system = mkIf isNixOS {
-    autoUpgrade = {
-      enable = false;  # Set to true to enable auto-upgrades
-      allowReboot = false;
-      flake = "github:username/nix-config";
-      flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-      dates = "weekly";
-    };
+#     autoUpgrade = {
+#       enable = false;  # Set to true to enable auto-upgrades
+#       allowReboot = false;
+#       flake = "github:username/nix-config";
+#       flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+#       dates = "weekly";
+#     };
     
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken.
-    stateVersion = "23.11";
+    stateVersion = "24.11";
   };
 
   # Darwin-specific settings

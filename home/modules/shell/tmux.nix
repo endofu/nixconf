@@ -42,24 +42,65 @@ in {
       terminal = cfg.terminal;
       shell = mkIf (cfg.shell != "") cfg.shell;
       
-      prefix = "C-a";
+      sensibleOnTop = true;
+      historyLimit = 20000;
+      escapeTime = 0;
       baseIndex = 1;
-      escapeTime = 10;
-      historyLimit = 10000;
+      newSession = false;
       
       plugins = with pkgs.tmuxPlugins; [
         sensible
-        yank
-        resurrect
-        continuum
+        # tmuxPlugins.sensible
+        tmuxPlugins.copycat
+        tmuxPlugins.yank
         {
-          plugin = dracula;
+          plugin = tmuxPlugins.tokyo-night-tmux;
           extraConfig = ''
-            set -g @dracula-show-battery false
-            set -g @dracula-show-powerline true
-            set -g @dracula-show-network false
-            set -g @dracula-show-left-icon session
-            set -g @dracula-border-contrast true
+              set -g @tokyo-night-tmux_theme storm
+              set -g @tokyo-night-tmux_transparent 1
+              set -g @tokyo-night-tmux_window_id_style fsquare
+              set -g @tokyo-night-tmux_pane_id_style dsquare
+              set -g @tokyo-night-tmux_zoom_id_style dsquare
+
+              # Icon styles
+              set -g @tokyo-night-tmux_terminal_icon 
+              set -g @tokyo-night-tmux_active_terminal_icon 
+
+              # No extra spaces between icons
+              set -g @tokyo-night-tmux_window_tidy_icons 0
+
+              set -g @tokyo-night-tmux_show_datetime 0
+              set -g @tokyo-night-tmux_date_format MYD
+              set -g @tokyo-night-tmux_time_format 12H
+
+              set -g @tokyo-night-tmux_show_path 1
+              set -g @tokyo-night-tmux_path_format relative # 'relative' or 'full'
+
+              set -g @tokyo-night-tmux_show_battery_widget false
+              # set -g @tokyo-night-tmux_battery_name "BAT1"  # some linux distro have 'BAT0'
+              # set -g @tokyo-night-tmux_battery_low_threshold 21 # default
+
+              set -g @tokyo-night-tmux_show_hostname 0
+          '';
+        }
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = ''
+            set -g @resurrect-strategy-vim 'session'
+            set -g @resurrect-strategy-nvim 'session'
+            set -g @resurrect-capture-pane-contents 'on'
+          '';
+        }
+        tmuxPlugins.tmux-thumbs
+        tmuxPlugins.tmux-fzf
+        tmuxPlugins.fzf-tmux-url
+        tmuxPlugins.session-wizard
+        tmuxPlugins.open
+        {
+          plugin = tmuxPlugins.better-mouse-mode;
+          extraConfig = ''
+            set -g @scroll-speed-num-lines-per-scroll "1"
+            set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"
           '';
         }
       ] ++ cfg.plugins;

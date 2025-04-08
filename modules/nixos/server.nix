@@ -123,8 +123,8 @@ in {
       tmux
       rsync
       rclone
-      restic
-      fail2ban
+#       restic
+#       fail2ban
     ] ++ optionals cfg.services.nginx [
       nginx
     ] ++ optionals cfg.services.postgresql [
@@ -134,10 +134,10 @@ in {
     ];
     
     # Server-specific settings
-    boot.kernel.sysctl = {
-      "vm.swappiness" = 10;
-      "fs.file-max" = 100000;
-      "net.core.somaxconn" = 1024;
-    };
+#     boot.kernel.sysctl = {
+#       "vm.swappiness" = 10;
+#       "fs.file-max" = 100000;
+#       "net.core.somaxconn" = 1024;
+#     };
   };
 }

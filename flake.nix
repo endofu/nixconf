@@ -72,14 +72,15 @@
     {
       # NixOS configurations
       nixosConfigurations = {
-        laptop = nixosSystem "x86_64-linux" "laptop" [];
-        server = nixosSystem "x86_64-linux" "server" [];
+          elaine = nixosSystem "x86_64-linux" "elaine" [];
+#         laptop = nixosSystem "x86_64-linux" "laptop" [];
+#         server = nixosSystem "x86_64-linux" "server" [];
       };
 
       # Darwin configurations
       darwinConfigurations = {
-        macbook = darwinSystem "aarch64-darwin" "macbook" [];
-        mac-mini = darwinSystem "aarch64-darwin" "mac-mini" [];
+#         macbook = darwinSystem "aarch64-darwin" "macbook" [];
+#         mac-mini = darwinSystem "aarch64-darwin" "mac-mini" [];
       };
 
       # Custom packages

@@ -17,8 +17,8 @@
   
   # Enable editor modules
   modules.editors = {
-    neovim.enable = true;
-    vscode.enable = true;
+    neovim.enable = false;
+    vscode.enable = false;
   };
   
   # Common development packages
@@ -44,8 +44,8 @@
     gh
     
     # Docker tools
-    docker-compose
-    lazydocker
+#     docker-compose
+#     lazydocker
   ];
   
   # XDG directories
@@ -57,14 +57,16 @@
   };
   
   # Configure direnv
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-  
+#   programs.direnv = {
+#     enable = true;
+#     nix-direnv.enable = true;
+#   };
+#
   # Configure starship prompt
   programs.starship = {
     enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
     settings = {
       add_newline = true;
       character = {

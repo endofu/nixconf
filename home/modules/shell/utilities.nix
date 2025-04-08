@@ -72,8 +72,19 @@ in {
       enable = true;
       enableZshIntegration = config.programs.zsh.enable;
       enableBashIntegration = config.programs.bash.enable;
-      defaultCommand = "fd --type f --hidden --exclude .git";
-      defaultOptions = [ "--height 40%" "--layout=reverse" "--border" ];
+      fileWidgetCommand = "fd --type f";
+      fileWidgetOptions = [
+        "--preview 'bat --style=full  --theme=DarkNeon --color=always --line-range :500 {}'"
+      ];
+      changeDirWidgetCommand = "fd --type d";
+      changeDirWidgetOptions = [
+        "--preview 'tree -C {} | head -200'"
+      ];
+      tmux = {
+        enableShellIntegration = true;
+      };
+#       defaultCommand = "fd --type f --hidden --exclude .git";
+#       defaultOptions = [ "--height 40%" "--layout=reverse" "--border" ];
     };
     
     # Configure bat

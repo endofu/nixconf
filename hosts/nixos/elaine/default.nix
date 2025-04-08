@@ -8,6 +8,10 @@
 
   # Include modules by enabling them
   modules = {
+    desktop = {
+      enable = true;
+      windowManager = "kde";
+    };
     server = {
       enable = true;
       sshd = {
@@ -29,7 +33,7 @@
       firewall = {
         enable = true;
         allowedTCPPorts = [ 22 80 443 ];
-        allowedUDPPorts = [];
+        allowedUDPPorts = [ 8001 ];
       };
     };
   };
@@ -52,15 +56,14 @@
   };
   
   home-manager.users = {
-    elaine = import ../../../home/users/elaine/nixos.nix;
+    elaine = import ../../../home/users/elaine;///nixos.nix;
   };
 
   # System-specific packages
   environment.systemPackages = with pkgs; [
     # Server-specific packages
-#     borgbackup
-#     smartmontools
-#     sysstat
+    cifs-utils
+    autorandr
   ];
 
     # Set your time zone.

@@ -65,11 +65,36 @@ in {
         visual = "!gitk";
         lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       } // cfg.aliases;
+
+      difftastic = {
+        enable = true;
+        # enableAsDifftool = true;
+      };
       
       extraConfig = {
         init.defaultBranch = "main";
-        pull.rebase = false;
-        push.autoSetupRemote = true;
+        pull.rebase = true;
+        column.ui = "auto";
+        branch.sort = "committerdate";
+        tag.sort = "version:refname";
+        # init.defaultBranch = "main";
+        diff = {
+          # external = "difft";
+          # algorithm = "histogram";
+          # colorMoved = "plain";
+          # mnemonicPrefix = true;
+          # renames = true;
+        };
+        push = {
+          default = "simple";
+          autoSetupRemote = true;
+          followTags = true;
+        };
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
+        };
         core = {
           editor = "nvim";
           whitespace = "trailing-space,space-before-tab";
@@ -77,9 +102,9 @@ in {
         color = {
           ui = "auto";
         };
-        diff = {
-          colorMoved = "default";
-        };
+#         diff = {
+#           colorMoved = "default";
+#         };
         merge = {
           conflictStyle = "diff3";
         };

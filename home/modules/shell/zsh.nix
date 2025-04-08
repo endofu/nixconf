@@ -40,41 +40,41 @@ in {
       autosuggestion.enable = cfg.enableAutosuggestions;
       syntaxHighlighting.enable = cfg.enableSyntaxHighlighting;
       
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "git"
-          "docker"
-          "docker-compose"
-          "kubectl"
-          "history"
-          "sudo"
-        ];
-      };
+#       oh-my-zsh = {
+#         enable = true;
+#         plugins = [
+#           "git"
+#           "docker"
+#           "docker-compose"
+#           "kubectl"
+#           "history"
+#           "sudo"
+#         ];
+#       };
       
-      initExtra = ''
-        # Additional zsh configuration
-        
-        # Key bindings
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
-        
-        # Aliases
-        alias ls='ls --color=auto'
-        alias ll='ls -la'
-        alias la='ls -A'
-        alias l='ls -CF'
-        
-        # Custom functions
-        function mkcd() {
-          mkdir -p "$1" && cd "$1"
-        }
-        
-        # Load local configuration if it exists
-        if [ -f ~/.zshrc.local ]; then
-          source ~/.zshrc.local
-        fi
-      '';
+#       initExtra = ''
+#         # Additional zsh configuration
+#
+#         # Key bindings
+#         bindkey '^[[A' history-substring-search-up
+#         bindkey '^[[B' history-substring-search-down
+#
+#         # Aliases
+#         alias ls='ls --color=auto'
+#         alias ll='ls -la'
+#         alias la='ls -A'
+#         alias l='ls -CF'
+#
+#         # Custom functions
+#         function mkcd() {
+#           mkdir -p "$1" && cd "$1"
+#         }
+#
+#         # Load local configuration if it exists
+#         if [ -f ~/.zshrc.local ]; then
+#           source ~/.zshrc.local
+#         fi
+#       '';
       
       sessionVariables = {
         EDITOR = "nvim";
@@ -84,12 +84,20 @@ in {
       };
       
       history = {
-        size = 10000;
-        save = 10000;
+        size = 100000;
+        save = 2000000;
         ignoreDups = true;
         ignoreSpace = true;
         extended = true;
         share = true;
+      };
+
+      shellAliases = {
+        mc = "mc --nosubshell";
+        ls = "lsd -al";
+        lst = "lsd -al --tree";
+        cat = "bat";
+#         vim = "nix run ~/Code/nixconf/nvf"; # this should be referenced relatively
       };
     };
     
