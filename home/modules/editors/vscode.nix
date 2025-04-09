@@ -134,12 +134,12 @@ in {
         
         # Extension settings
         "todo-tree.general.tags" = [
-          "BUG",
-          "HACK",
-          "FIXME",
-          "TODO",
-          "XXX",
-          "[ ]",
+          "BUG"
+          "HACK"
+          "FIXME"
+          "TODO"
+          "XXX"
+          "[ ]"
           "[x]"
         ];
         

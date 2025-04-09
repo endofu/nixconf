@@ -59,10 +59,11 @@ in {
     # SSH daemon configuration
     services.openssh = mkIf cfg.sshd.enable {
       enable = true;
-      permitRootLogin = cfg.sshd.permitRootLogin;
-      passwordAuthentication = cfg.sshd.passwordAuthentication;
-      kbdInteractiveAuthentication = cfg.sshd.passwordAuthentication;
-      
+      settings = {
+        PermitRootLogin = cfg.sshd.permitRootLogin;
+        PasswordAuthentication = cfg.sshd.passwordAuthentication;
+        KbdInteractiveAuthentication = cfg.sshd.passwordAuthentication;
+      };
       extraConfig = ''
         AllowTcpForwarding yes
         X11Forwarding no

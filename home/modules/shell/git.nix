@@ -155,14 +155,14 @@ in {
     };
     
     # Add delta for better diffs if available
-    programs.git.delta = {
-      enable = true;
-      options = {
-        features = "side-by-side line-numbers decorations";
-        syntax-theme = "Dracula";
-        plus-style = "syntax #003800";
-        minus-style = "syntax #3f0001";
-      };
-    };
+#     programs.git.delta = {
+#       enable = true;
+#       options = {
+#         features = "side-by-side line-numbers decorations";
+#         syntax-theme = "Dracula";
+#         plus-style = "syntax #003800";
+#         minus-style = "syntax #3f0001";
+#       };
+#     };
   };
 }

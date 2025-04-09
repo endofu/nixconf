@@ -7,6 +7,7 @@
 
   # Common configuration for both NixOS and Darwin
   home.username = "elaine";
+  home.stateVersion = "24.11";
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/elaine" else "/home/elaine";
   
   # Enable specific shell modules
@@ -32,12 +33,8 @@
   # Configure editors
   modules.editors = {
     neovim = {
-      enable = false;
-      defaultEditor = false;
-      lsp = {
-        enable = false;
-        servers = [ "rust_analyzer" "pyright" "tsserver" "nil" ];
-      };
+      enable = true;
+      defaultEditor = true;
     };
     
     vscode = {
@@ -79,22 +76,22 @@
   };
   
   # SSH configuration
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "github.com" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/github";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
-      };
-      /*
-      "server" = {
-        hostname = "server.example.com";
-        user = "alice";
-        port = 22;
-        identityFile = "${config.home.homeDirectory}/.ssh/server";
-      };*/
-    };
-  };
+#   programs.ssh = {
+#     enable = true;
+#     matchBlocks = {
+#       "github.com" = {
+#         identityFile = "${config.home.homeDirectory}/.ssh/github";
+#         extraOptions = {
+#           AddKeysToAgent = "yes";
+#         };
+#       };
+#       /*
+#       "server" = {
+#         hostname = "server.example.com";
+#         user = "alice";
+#         port = 22;
+#         identityFile = "${config.home.homeDirectory}/.ssh/server";
+#       };*/
+#     };
+#   };
 }

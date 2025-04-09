@@ -9,7 +9,7 @@ in {
   # Common Nix settings for both NixOS and Darwin
   nix = {
     settings = {
-      auto-optimise-store = true;
+      # auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
       max-jobs = "auto";
@@ -37,29 +37,18 @@ in {
     } else {});
   };
   
-  # NixOS-specific settings
-  system = mkIf isNixOS {
-#     autoUpgrade = {
-#       enable = false;  # Set to true to enable auto-upgrades
-#       allowReboot = false;
-#       flake = "github:username/nix-config";
-#       flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
-#       dates = "weekly";
-#     };
-    
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken.
+  system = mkMerge [
+  (mkIf isNixOS {
     stateVersion = "24.11";
-  };
+  })
 
-  # Darwin-specific settings
-  system = mkIf isDarwin {
+  (mkIf isDarwin {
     stateVersion = 4;
-    
+
     activationScripts.postActivation.text = ''
       # Activate changes and rebuild
       /run/current-system/sw/bin/darwin-rebuild build
     '';
-  };
+  })
+];
 }

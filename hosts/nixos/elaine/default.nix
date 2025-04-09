@@ -6,11 +6,16 @@
     ./hardware-configuration.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # Include modules by enabling them
   modules = {
     desktop = {
       enable = true;
       windowManager = "kde";
+    };
+    fonts = {
+      enable = true;
     };
     server = {
       enable = true;
@@ -28,8 +33,8 @@
     };
     networking = {
       enable = true;
-      enableWireless = false;
-      enableVPN = true;
+      enableWireless = true;
+      enableVPN = false;
       firewall = {
         enable = true;
         allowedTCPPorts = [ 22 80 443 ];
@@ -56,7 +61,7 @@
   };
   
   home-manager.users = {
-    elaine = import ../../../home/users/elaine;///nixos.nix;
+    elaine = import ../../../home/users/elaine;
   };
 
   # System-specific packages

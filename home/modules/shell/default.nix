@@ -7,5 +7,7 @@
     ./utilities.nix
     ./git.nix
     ./tmux.nix
+    ./wezterm.nix
+    ./lazygit.nix
   ];
 }

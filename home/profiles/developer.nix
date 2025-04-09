@@ -13,26 +13,22 @@
     utilities.enable = true;
     git.enable = true;
     tmux.enable = true;
+    wezterm.enable = true;
+    lazygit.enable = true;
   };
   
   # Enable editor modules
   modules.editors = {
-    neovim.enable = false;
+    neovim.enable = true;
     vscode.enable = false;
   };
   
   # Common development packages
   home.packages = with pkgs; [
-    # Languages and platforms
-    nodejs
-    python3
-    rustup
-    go
-    
     # Build tools
-    gcc
-    gnumake
-    cmake
+#     gcc
+#     gnumake
+#     cmake
     
     # Dev tools
     jq
@@ -42,6 +38,20 @@
     ripgrep
     fzf
     gh
+    nixd
+    nil
+    nixfmt-rfc-style
+    tree
+    eza
+    lsd
+    nushell
+    zoxide
+    dust
+    duf
+    ncdu
+    btop
+    htop
+#     nowplaying-cli # this is needed for the tokyo-night-tmux plugin
     
     # Docker tools
 #     docker-compose

@@ -50,11 +50,11 @@ in {
       
       plugins = with pkgs.tmuxPlugins; [
         sensible
-        # tmuxPlugins.sensible
-        tmuxPlugins.copycat
-        tmuxPlugins.yank
+        # sensible
+        copycat
+        yank
         {
-          plugin = tmuxPlugins.tokyo-night-tmux;
+          plugin = tokyo-night-tmux;
           extraConfig = ''
               set -g @tokyo-night-tmux_theme storm
               set -g @tokyo-night-tmux_transparent 1
@@ -84,20 +84,20 @@ in {
           '';
         }
         {
-          plugin = tmuxPlugins.resurrect;
+          plugin = resurrect;
           extraConfig = ''
             set -g @resurrect-strategy-vim 'session'
             set -g @resurrect-strategy-nvim 'session'
             set -g @resurrect-capture-pane-contents 'on'
           '';
         }
-        tmuxPlugins.tmux-thumbs
-        tmuxPlugins.tmux-fzf
-        tmuxPlugins.fzf-tmux-url
-        tmuxPlugins.session-wizard
-        tmuxPlugins.open
+        tmux-thumbs
+        tmux-fzf
+        fzf-tmux-url
+        session-wizard
+        open
         {
-          plugin = tmuxPlugins.better-mouse-mode;
+          plugin = better-mouse-mode;
           extraConfig = ''
             set -g @scroll-speed-num-lines-per-scroll "1"
             set -g @emulate-scroll-for-no-mouse-alternate-buffer "on"

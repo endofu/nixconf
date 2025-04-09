@@ -99,11 +99,11 @@ in {
     # Set up shell aliases for the replacement tools
     home.shellAliases = mkMerge [
       (mkIf cfg.enableExa {
-        ls = "eza";
-        ll = "eza -la";
-        la = "eza -a";
-        lt = "eza -T";
-        l = "eza -F";
+#         ls = "eza";
+#         ll = "eza -la";
+#         la = "eza -a";
+#         lt = "eza -T";
+#         l = "eza -F";
       })
       
       (mkIf cfg.enableBat {

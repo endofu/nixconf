@@ -4,9 +4,9 @@
 { pkgs ? import <nixpkgs> {} }:
 
 {
-  # Custom packages
-  custom-neofetch = pkgs.callPackage ./custom-neofetch {};
-  
-  # Example: A custom template generator
-  project-template = pkgs.callPackage ./project-template {};
+#   # Custom packages
+#   custom-neofetch = pkgs.callPackage ./custom-neofetch {};
+#
+#   # Example: A custom template generator
+#   project-template = pkgs.callPackage ./project-template {};
 }

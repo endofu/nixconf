@@ -23,14 +23,8 @@ in {
       historySize = 10000;
       
       shellAliases = {
-        ls = "ls --color=auto";
-        ll = "ls -la";
-        la = "ls -A";
-        l = "ls -CF";
-        grep = "grep --color=auto";
-        diff = "diff --color=auto";
       };
-      
+
       shellOptions = [
         "histappend"
         "checkwinsize"

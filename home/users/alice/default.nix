@@ -83,22 +83,22 @@
   };
   
   # SSH configuration
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "github.com" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/github";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
-      };
-      
-      "server" = {
-        hostname = "server.example.com";
-        user = "alice";
-        port = 22;
-        identityFile = "${config.home.homeDirectory}/.ssh/server";
-      };
-    };
-  };
+#   programs.ssh = {
+#     enable = true;
+#     matchBlocks = {
+#       "github.com" = {
+#         identityFile = "${config.home.homeDirectory}/.ssh/github";
+#         extraOptions = {
+#           AddKeysToAgent = "yes";
+#         };
+#       };
+#
+#       "server" = {
+#         hostname = "server.example.com";
+#         user = "alice";
+#         port = 22;
+#         identityFile = "${config.home.homeDirectory}/.ssh/server";
+#       };
+#     };
+#   };
 }

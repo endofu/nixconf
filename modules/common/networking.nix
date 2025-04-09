@@ -87,7 +87,7 @@ in {
     
     (mkIf (cfg.enable && pkgs.stdenv.isDarwin) {
       # Darwin-specific networking configuration
-      networking.dns = [ "1.1.1.1" "8.8.8.8" ];
+      # this is an error: networking.dns = [ "1.1.1.1" "8.8.8.8" ];
       
       # Common networking packages for macOS
       environment.systemPackages = with pkgs; [
