@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -9,34 +13,36 @@
   home.username = "elaine";
   home.stateVersion = "24.11";
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/elaine" else "/home/elaine";
-  
+
   # Enable specific shell modules
   modules.shell = {
     git = {
       enable = true;
       userName = "endofu";
       userEmail = "endofu@gmail.com";
-      /*signing = {
-        enable = true;
-        key = "XXXXXXXXXXXXXXXX";
-      };*/
+      /*
+        signing = {
+          enable = true;
+          key = "XXXXXXXXXXXXXXXX";
+        };
+      */
     };
-    
-#     zsh = {
-#       enable = true;
-#       defaultShell = true;
-#     };
-    
+
+    #     zsh = {
+    #       enable = true;
+    #       defaultShell = true;
+    #     };
+
     tmux.enable = true;
   };
-  
+
   # Configure editors
   modules.editors = {
     neovim = {
       enable = true;
       defaultEditor = true;
     };
-    
+
     vscode = {
       enable = false;
       userSettings = {
@@ -45,19 +51,19 @@
       };
     };
   };
-  
+
   # Common packages for all platforms
   home.packages = with pkgs; [
     # Communication tools
-#     slack
+    #     slack
     discord
-    
+
     # Development tools
     gnumake
     cmake
     gcc
   ];
-  
+
   # Program-specific configurations
   programs = {
     # Browser
@@ -67,31 +73,32 @@
         isDefault = true;
         settings = {
           "browser.startup.homepage" = "https://google.com";
-#           "browser.search.region" = "US";
-#           "browser.search.isUS" = true;
-#           "browser.useragent.locale" = "en-US";
+          #           "browser.search.region" = "US";
+          #           "browser.search.isUS" = true;
+          #           "browser.useragent.locale" = "en-US";
         };
       };
     };
   };
-  
+
   # SSH configuration
-#   programs.ssh = {
-#     enable = true;
-#     matchBlocks = {
-#       "github.com" = {
-#         identityFile = "${config.home.homeDirectory}/.ssh/github";
-#         extraOptions = {
-#           AddKeysToAgent = "yes";
-#         };
-#       };
-#       /*
-#       "server" = {
-#         hostname = "server.example.com";
-#         user = "alice";
-#         port = 22;
-#         identityFile = "${config.home.homeDirectory}/.ssh/server";
-#       };*/
-#     };
-#   };
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "github.com" = {
+        identityFile = "${config.home.homeDirectory}/.ssh/github";
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
+      };
+      /*
+        "server" = {
+          hostname = "server.example.com";
+          user = "alice";
+          port = 22;
+          identityFile = "${config.home.homeDirectory}/.ssh/server";
+        };
+      */
+    };
+  };
 }
