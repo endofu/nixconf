@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -17,6 +22,12 @@
     fonts = {
       enable = true;
     };
+    teamviewer = {
+      enable = true;
+    };
+    # llm = {
+    #   enable = true;
+    # };
     server = {
       enable = true;
       sshd = {
@@ -37,12 +48,15 @@
       enableVPN = false;
       firewall = {
         enable = true;
-        allowedTCPPorts = [ 22 80 443 ];
+        allowedTCPPorts = [
+          22
+          80
+          443
+        ];
         allowedUDPPorts = [ 8001 ];
       };
     };
   };
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -50,16 +64,19 @@
 
   # Machine-specific configurations
   networking.hostName = "elaine";
-  
+
   # Define users and their home-manager configurations
   users.users.elaine = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-#     openssh.authorizedKeys.keys = [
-#       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqr1ylpMV5g+CtuHd8jmjh4JB6Bt6EFMCJISYTLmFqM alice@example.com"
-#     ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    #     openssh.authorizedKeys.keys = [
+    #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqr1ylpMV5g+CtuHd8jmjh4JB6Bt6EFMCJISYTLmFqM alice@example.com"
+    #     ];
   };
-  
+
   home-manager.users = {
     elaine = import ../../../home/users/elaine;
   };
@@ -71,7 +88,7 @@
     autorandr
   ];
 
-    # Set your time zone.
+  # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
   # Select internationalisation properties.
@@ -91,7 +108,7 @@
 
   hardware.graphics.enable = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
 
@@ -118,7 +135,7 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
