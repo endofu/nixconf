@@ -1,15 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.desktop;
-in {
+in
+{
   options.modules.desktop = {
     enable = mkEnableOption "desktop environment";
-    
+
     windowManager = mkOption {
-      type = types.enum [ "i3" "sway" "gnome" "kde" ];
+      type = types.enum [
+        "i3"
+        "sway"
+        "gnome"
+        "kde"
+      ];
       default = "gnome";
       description = "Window manager to use";
     };
@@ -33,13 +44,12 @@ in {
         };
       };
     };
-    
+
     programs.sway.enable = cfg.windowManager == "sway";
-    
+
     # Common packages for all desktop setups
     environment.systemPackages = with pkgs; [
       firefox
-      alacritty
       gnome-tweaks
       dconf-editor
       networkmanagerapplet

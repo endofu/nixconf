@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ../modules/shell
     ../modules/editors
+    ../modules/desktop
   ];
-  
+
   # Enable shell modules
   modules.shell = {
     zsh.enable = true;
@@ -16,20 +21,24 @@
     wezterm.enable = true;
     lazygit.enable = true;
   };
-  
+
   # Enable editor modules
   modules.editors = {
     neovim.enable = true;
     vscode.enable = false;
   };
-  
+
+  modules.desktop = {
+    copyq.enable = true;
+  };
+
   # Common development packages
   home.packages = with pkgs; [
     # Build tools
-#     gcc
-#     gnumake
-#     cmake
-    
+    #     gcc
+    #     gnumake
+    #     cmake
+
     # Dev tools
     jq
     yq
@@ -51,13 +60,13 @@
     ncdu
     btop
     htop
-#     nowplaying-cli # this is needed for the tokyo-night-tmux plugin
-    
+    #     nowplaying-cli # this is needed for the tokyo-night-tmux plugin
+
     # Docker tools
-#     docker-compose
-#     lazydocker
+    #     docker-compose
+    #     lazydocker
   ];
-  
+
   # XDG directories
   xdg = {
     enable = true;
@@ -65,13 +74,13 @@
     dataHome = "${config.home.homeDirectory}/.local/share";
     cacheHome = "${config.home.homeDirectory}/.cache";
   };
-  
+
   # Configure direnv
-#   programs.direnv = {
-#     enable = true;
-#     nix-direnv.enable = true;
-#   };
-#
+  #   programs.direnv = {
+  #     enable = true;
+  #     nix-direnv.enable = true;
+  #   };
+  #
   # Configure starship prompt
   programs.starship = {
     enable = true;

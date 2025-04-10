@@ -52,6 +52,13 @@
     };
   };
 
+  # Configure desktop
+  modules.desktop = {
+    copyq = {
+      enable = true;
+    };
+  };
+
   # Common packages for all platforms
   home.packages = with pkgs; [
     # Communication tools
