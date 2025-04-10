@@ -8,5 +8,6 @@
     ./teamviewer.nix
     ./networking.nix
     ./nix-settings.nix
+    ./llm.nix
   ];
 }

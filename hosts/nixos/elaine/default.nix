@@ -25,9 +25,9 @@
     teamviewer = {
       enable = true;
     };
-    # llm = {
-    #   enable = true;
-    # };
+    llm = {
+      enable = true;
+    };
     server = {
       enable = true;
       sshd = {
@@ -51,6 +51,7 @@
         allowedTCPPorts = [
           22
           80
+          8080
           443
         ];
         allowedUDPPorts = [ 8001 ];
