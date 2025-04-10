@@ -29,7 +29,7 @@ in
             cell_width = 0.9,
             color_scheme = "Tokyo Night Storm",
             hide_tab_bar_if_only_one_tab = true,
-            window_decorations = "NONE",
+            window_decorations = "RESIZE",
 
             enable_wayland = true, 
             native_macos_fullscreen_mode = true,
