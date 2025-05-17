@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.fonts;
-in {
+in
+{
   options.modules.fonts = {
     enable = mkEnableOption "fonts configuration";
   };
@@ -19,7 +25,6 @@ in {
       nerd-fonts.victor-mono
       nerd-fonts.blex-mono
       nerd-fonts.im-writing
-      nerd-fonts.mplus
       nerd-fonts.monaspace
     ];
   };
