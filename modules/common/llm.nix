@@ -24,6 +24,8 @@ in
       open-webui = {
         enable = true;
       };
+
+        
     };
   };
 }

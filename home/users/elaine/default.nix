@@ -43,6 +43,10 @@
       defaultEditor = true;
     };
 
+    zed = {
+      enable = true;
+    };
+
     vscode = {
       enable = false;
       userSettings = {
