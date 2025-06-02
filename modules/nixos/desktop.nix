@@ -33,11 +33,11 @@ in
       displayManager.sddm.enable = cfg.windowManager == "kde";
       desktopManager.plasma6.enable = cfg.windowManager == "kde";
 
+      displayManager.gdm.enable = cfg.windowManager == "gnome";
+      desktopManager.gnome.enable = cfg.windowManager == "gnome";
+
       xserver = {
         enable = true;
-
-        displayManager.gdm.enable = cfg.windowManager == "gnome";
-        desktopManager.gnome.enable = cfg.windowManager == "gnome";
 
         windowManager = {
           i3.enable = cfg.windowManager == "i3";
