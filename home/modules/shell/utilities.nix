@@ -1,43 +1,49 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.shell.utilities;
-in {
+in
+{
   options.modules.shell.utilities = {
     enable = mkEnableOption "shell utilities";
-    
+
     enableFzf = mkOption {
       type = types.bool;
       default = true;
       description = "Enable fzf for fuzzy finding";
     };
-    
+
     enableExa = mkOption {
       type = types.bool;
       default = true;
       description = "Enable exa as ls replacement";
     };
-    
+
     enableBat = mkOption {
       type = types.bool;
       default = true;
       description = "Enable bat as cat replacement";
     };
-    
+
     enableRipgrep = mkOption {
       type = types.bool;
       default = true;
       description = "Enable ripgrep as grep replacement";
     };
-    
+
     enableFd = mkOption {
       type = types.bool;
       default = true;
       description = "Enable fd as find replacement";
     };
-    
+
     enableHtop = mkOption {
       type = types.bool;
       default = true;
@@ -47,26 +53,30 @@ in {
 
   config = mkIf cfg.enable {
     # Install shell utilities
-    home.packages = with pkgs; [
-      # Basic utilities
-      coreutils
-      gnused
-      gawk
-      gnugrep
-      findutils
-      which
-      file
-      tree
-      ncdu
-      
-      # Conditionally enabled replacements
-    ] ++ optionals cfg.enableFzf [ fzf ]
+    home.packages =
+      with pkgs;
+      [
+        # Basic utilities
+        coreutils
+        gnused
+        gawk
+        gnugrep
+        findutils
+        which
+        file
+        tree
+        ncdu
+        mc
+        lsd
+        # Conditionally enabled replacements
+      ]
+      ++ optionals cfg.enableFzf [ fzf ]
       ++ optionals cfg.enableExa [ eza ]
       ++ optionals cfg.enableBat [ bat ]
       ++ optionals cfg.enableRipgrep [ ripgrep ]
       ++ optionals cfg.enableFd [ fd ]
       ++ optionals cfg.enableHtop [ htop ];
-    
+
     # Configure fzf
     programs.fzf = mkIf cfg.enableFzf {
       enable = true;
@@ -83,10 +93,10 @@ in {
       tmux = {
         enableShellIntegration = true;
       };
-#       defaultCommand = "fd --type f --hidden --exclude .git";
-#       defaultOptions = [ "--height 40%" "--layout=reverse" "--border" ];
+      #       defaultCommand = "fd --type f --hidden --exclude .git";
+      #       defaultOptions = [ "--height 40%" "--layout=reverse" "--border" ];
     };
-    
+
     # Configure bat
     programs.bat = mkIf cfg.enableBat {
       enable = true;
@@ -95,29 +105,41 @@ in {
         style = "plain";
       };
     };
-    
+
+    home.file = {
+      ".local/share/mc/skins/ajnasz-blue.ini".source = ../../dotfiles/ajnasz-blue.ini;
+      ".config/mc/ini".source = ../../dotfiles/mc.ini;
+    };
+
     # Set up shell aliases for the replacement tools
     home.shellAliases = mkMerge [
+
+      {
+        mc = "mc --nosubshell";
+        ls = "lsd -al";
+        lst = "lsd -al --tree";
+      }
+
       (mkIf cfg.enableExa {
-#         ls = "eza";
-#         ll = "eza -la";
-#         la = "eza -a";
-#         lt = "eza -T";
-#         l = "eza -F";
+        #         ls = "eza";
+        #         ll = "eza -la";
+        #         la = "eza -a";
+        #         lt = "eza -T";
+        #         l = "eza -F";
       })
-      
+
       (mkIf cfg.enableBat {
         cat = "bat";
       })
-      
+
       (mkIf cfg.enableRipgrep {
         grep = "rg";
       })
-      
+
       (mkIf cfg.enableFd {
         find = "fd";
       })
-      
+
       (mkIf cfg.enableHtop {
         top = "htop";
       })
