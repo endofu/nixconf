@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -25,7 +26,11 @@ in
         enable = true;
       };
 
-        
     };
+    environment.systemPackages = with pkgs; [
+      librechat
+      claude-code
+      codex
+    ];
   };
 }
