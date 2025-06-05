@@ -8,7 +8,6 @@
   imports = [
     ../modules/shell
     ../modules/editors
-    ../modules/desktop
   ];
 
   # Enable shell modules
@@ -28,11 +27,6 @@
     vscode.enable = false;
   };
 
-  modules.desktop = {
-    copyq.enable = true;
-  };
-
-  # Common development packages
   home.packages = with pkgs; [
     # Build tools
     #     gcc

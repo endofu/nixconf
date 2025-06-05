@@ -7,6 +7,7 @@
 {
   imports = [
     ../../profiles/developer.nix
+    ../../profiles/desktop.nix
   ];
 
   # Common configuration for both NixOS and Darwin
@@ -59,6 +60,9 @@
   # Configure desktop
   modules.desktop = {
     copyq = {
+      enable = true;
+    };
+    obsidian = {
       enable = true;
     };
   };
