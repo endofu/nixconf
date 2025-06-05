@@ -72,6 +72,18 @@ in
           dark = "Oxocarbon Dark (IBM Carbon)";
         };
 
+        context_servers = {
+          "Context7" = {
+            command = {
+              path = "npx";
+              args = [
+                "-y"
+                "@upstash/context7-mcp"
+              ];
+            };
+            settings = { };
+          };
+        };
       };
     };
   };
