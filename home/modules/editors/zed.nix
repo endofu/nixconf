@@ -36,7 +36,7 @@ in
           };
         };
         formatter = "language_server";
-        format_on_save = true;
+        format_on_save = "on";
         lsp = {
           rust-analyzer = {
 
