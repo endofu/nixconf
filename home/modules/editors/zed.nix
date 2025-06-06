@@ -23,6 +23,8 @@ in
         "toml"
         "oxocarbon"
       ];
+      userKeymaps = [ ];
+
       userSettings = {
         hour_format = "hour24";
         auto_update = false;

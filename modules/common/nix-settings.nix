@@ -35,13 +35,24 @@ in
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E"
       ];
     };
-    gc = {
-      automatic = isNixOS;
-      options = "--delete-older-than 30d";
-      interval = {
-        Day = 7;
-      };
-    };
+    gc =
+      {
+        automatic = true;
+        options = "--delete-older-than 30d";
+      }
+      // (
+        if isNixOS then
+          {
+            dates = "weekly";
+          }
+        else if isDarwin then
+          {
+            interval = {
+              Day = 7;
+          };
+        }
+        else { }
+      );
   };
 
   system = mkMerge [

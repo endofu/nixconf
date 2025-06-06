@@ -60,9 +60,6 @@
 
   # Configure desktop
   modules.desktop = {
-    copyq = {
-      enable = true;
-    };
     obsidian = {
       enable = true;
     };
