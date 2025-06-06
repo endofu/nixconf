@@ -4,6 +4,6 @@
 
 {
   imports = [
-    ./obsidian.nix
+    ./copyq.nix
   ];
 }

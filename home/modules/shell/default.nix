@@ -1,4 +1,6 @@
-{ config, lib, pkgs, ... }:
+{
+  ...
+}:
 
 {
   imports = [
@@ -8,6 +10,7 @@
     ./git.nix
     ./tmux.nix
     ./wezterm.nix
+    ./kitty.nix
     ./lazygit.nix
   ];
 }

@@ -4,10 +4,9 @@
 
 {
   imports = [
+    ./basics.nix
     ./fonts.nix
-    ./teamviewer.nix
-    ./networking.nix
     ./nix-settings.nix
-    ./llm.nix
+    ./code-agents.nix
   ];
 }

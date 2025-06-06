@@ -35,26 +35,13 @@ in
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E"
       ];
     };
-
-    gc =
-      {
-        automatic = true;
-        options = "--delete-older-than 30d";
-      }
-      // (
-        if isNixOS then
-          {
-            dates = "weekly";
-          }
-        else if isDarwin then
-          {
-            interval = {
-              Day = 7;
-            };
-          }
-        else
-          { }
-      );
+    gc = {
+      automatic = isNixOS;
+      options = "--delete-older-than 30d";
+      interval = {
+        Day = 7;
+      };
+    };
   };
 
   system = mkMerge [
@@ -63,8 +50,6 @@ in
     })
 
     (mkIf isDarwin {
-      stateVersion = 4;
-
       activationScripts.postActivation.text = ''
         # Activate changes and rebuild
         /run/current-system/sw/bin/darwin-rebuild build

@@ -1,10 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 
 let
   cfg = config.modules.shell.lazygit;
-in {
+in
+{
   options.modules.shell.lazygit = {
     enable = mkEnableOption "lazygit configuration";
 
@@ -13,27 +14,27 @@ in {
   config = mkIf cfg.enable {
 
     programs = {
-        lazygit = {
-          enable = true;
-          settings = {
-            gui = {
-              showRandomTip = false;
-              showNumstatInFilesView = true;
-              showBottomLine = true;
-              showPanelJumps = false;
-              nerdFontsVersion = "3";
-              showDivergenceFromBaseBranch = "arrowAndNumber";
-              filterMode = "fuzzy";
+      lazygit = {
+        enable = true;
+        settings = {
+          gui = {
+            showRandomTip = false;
+            showNumstatInFilesView = true;
+            showBottomLine = true;
+            showPanelJumps = false;
+            nerdFontsVersion = "3";
+            showDivergenceFromBaseBranch = "arrowAndNumber";
+            filterMode = "fuzzy";
+          };
+          git = {
+            paging = {
+              externalDiffCommand = "difft --color=always";
             };
-            git = {
-              paging = {
-                externalDiffCommand = "difft --color=always";
-              };
-              parseEmoji = true;
+            parseEmoji = true;
 
-            };
           };
         };
+      };
     };
   };
 }

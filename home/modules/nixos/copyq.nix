@@ -7,10 +7,10 @@
 with lib;
 
 let
-  cfg = config.modules.desktop.copyq;
+  cfg = config.modules.nixos.copyq;
 in
 {
-  options.modules.desktop.copyq = {
+  options.modules.nixos.copyq = {
     enable = mkEnableOption "lazygit configuration";
 
   };

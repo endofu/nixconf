@@ -29,8 +29,6 @@ in
     };
     environment.systemPackages = with pkgs; [
       librechat
-      claude-code
-      codex
     ];
   };
 }

@@ -8,13 +8,13 @@
   imports = [
     ../../profiles/developer.nix
     ../../profiles/desktop.nix
-    ../../profiles/nixos.nix
+    ../../profiles/darwin.nix
   ];
 
   # Common configuration for both NixOS and Darwin
-  home.username = "elaine";
+  home.username = "arcadia";
   home.stateVersion = "24.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/elaine" else "/home/elaine";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/arcadia" else "/home/arcadia";
 
   # Enable specific shell modules
   modules.shell = {
@@ -51,18 +51,11 @@
 
     vscode = {
       enable = false;
-      userSettings = {
-        "workbench.colorTheme" = "Dracula";
-        "editor.fontSize" = 15;
-      };
     };
   };
 
   # Configure desktop
   modules.desktop = {
-    copyq = {
-      enable = true;
-    };
     obsidian = {
       enable = true;
     };
@@ -79,23 +72,6 @@
     cmake
     gcc
   ];
-
-  # Program-specific configurations
-  programs = {
-    # Browser
-    firefox = {
-      enable = pkgs.stdenv.isLinux;
-      profiles.default = {
-        isDefault = true;
-        settings = {
-          "browser.startup.homepage" = "https://google.com";
-          #           "browser.search.region" = "US";
-          #           "browser.search.isUS" = true;
-          #           "browser.useragent.locale" = "en-US";
-        };
-      };
-    };
-  };
 
   # SSH configuration
   programs.ssh = {

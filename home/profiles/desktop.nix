@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 
@@ -10,7 +9,6 @@
   ];
 
   modules.desktop = {
-    copyq.enable = true;
     obsidian.enable = true;
   };
 

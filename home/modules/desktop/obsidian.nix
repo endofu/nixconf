@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.desktop.obsidian = {
-    enable = mkEnableOption "lazygit configuration";
+    enable = mkEnableOption "obsidian configuration";
   };
 
   config = mkIf cfg.enable {
