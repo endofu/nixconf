@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     darwin = {
@@ -15,38 +15,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "darwin";
     };
-
-    # # Homebrew integration
-    # nix-homebrew = {
-    #   url = "github:zhaofengli-wip/nix-homebrew";
-    # };
-
-    # # Optional: Declarative tap management
-    # homebrew-core = {
-    #   url = "github:homebrew/homebrew-core";
-    #   flake = false;
-    # };
-    # homebrew-cask = {
-    #   url = "github:homebrew/homebrew-cask";
-    #   flake = false;
-    # };
-    # homebrew-bundle = {
-    #   url = "github:homebrew/homebrew-bundle";
-    #   flake = false;
-    # };
+    
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      # nixpkgs-stable,
+      nixpkgs-2405,
       darwin,
       home-manager,
-      # nix-homebrew,
-      # homebrew-core,
-      # homebrew-cask,
-      # homebrew-bundle,
       ...
     }@inputs:
     let
@@ -108,20 +87,6 @@
                 inherit self;
               };
             }
-            # Homebrew integration
-            # nix-homebrew.darwinModules.nix-homebrew
-            # {
-            #   nix-homebrew = {
-            #     enable = true;
-            #     user = hostname;
-            #     taps = {
-            #       "homebrew/homebrew-core" = homebrew-core;
-            #       "homebrew/homebrew-cask" = homebrew-cask;
-            #       "homebrew/homebrew-bundle" = homebrew-bundle;
-            #     };
-            #     mutableTaps = false;
-            #   };
-            # }
           ] ++ modules;
 
           specialArgs = {

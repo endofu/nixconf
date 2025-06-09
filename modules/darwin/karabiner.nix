@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        inherit (inputs.nixpkgs-stable.legacyPackages.${prev.system}) karabiner-elements;
+        inherit (inputs.nixpkgs-2405.legacyPackages.${prev.system}) karabiner-elements;
       })
     ];
 
