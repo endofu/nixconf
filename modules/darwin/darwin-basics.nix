@@ -16,7 +16,16 @@ in
 
   config = mkIf cfg.enable {
 
-    security.pam.services.sudo_local.touchIdAuth = true;
-
+    nix = {
+      settings = {
+        # auto-optimise-store = true;
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        warn-dirty = false;
+        max-jobs = "auto";
+      };
+    };
   };
 }
