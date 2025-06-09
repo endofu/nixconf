@@ -1,5 +1,5 @@
 # This file defines overlays
-{ inputs, ... }:
+{  ... }:
 
 {
   # This allows defining custom packages in the pkgs directory

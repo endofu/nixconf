@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -18,7 +17,7 @@ in
   config = mkIf cfg.enable {
 
     # Common packages for all macOS setups
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
     ];
 
     # Homebrew configuration

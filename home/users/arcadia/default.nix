@@ -11,6 +11,8 @@
     ../../profiles/darwin.nix
   ];
 
+  programs.home-manager.enable = true;
+
   # Common configuration for both NixOS and Darwin
   home.username = "arcadia";
   home.stateVersion = "24.11";

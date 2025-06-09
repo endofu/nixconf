@@ -47,7 +47,6 @@
     tree
     eza
     lsd
-    nushell
     zoxide
     dust
     duf

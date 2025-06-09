@@ -3,7 +3,7 @@
 }:
 
 {
-  nix.enable = false;
+  #nix.enable = false;
   # System configuration
   nixpkgs.config.allowUnfree = true;
 
@@ -30,20 +30,20 @@
 
   # Enable modules
   modules = {
-    # Common modules
+    basics.enable = true;
+    code-agents.enable = true;
     fonts.enable = true;
 
-    # Keyboard customization
     karabiner.enable = true;
-
     darwin-basics.enable = true;
+    homebrew.enable = true;
+    macos.enable = true;
+    macos-apps.enable = true;
   };
 
-  # Home Manager configuration
-  home-manager.users.arcadia =
-    { pkgs, ... }:
-    {
-      home.stateVersion = "24.11";
-      programs.home-manager.enable = true;
-    };
+  home-manager.users = {
+    arcadia = import ../../../home/users/arcadia;
+  };
+
+
 }

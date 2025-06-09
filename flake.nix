@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -39,7 +40,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-stable,
+      # nixpkgs-stable,
       darwin,
       home-manager,
       # nix-homebrew,
@@ -49,13 +50,13 @@
       ...
     }@inputs:
     let
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      # supportedSystems = [
+      #   "x86_64-linux"
+      #   "aarch64-linux"
+      #   "x86_64-darwin"
+      #   "aarch64-darwin"
+      # ];
+      # forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
       # NixOS configuration helpers
       nixosSystem =
@@ -85,9 +86,16 @@
       # Darwin configuration helpers
       darwinSystem =
         system: hostname: modules:
-        darwin.lib.darwinSystem {
-          inherit system;
-          modules = [
+          darwin.lib.darwinSystem {
+            inherit system;
+            modules = [
+              {
+                nixpkgs.overlays = [
+                  (final: prev: {
+                    nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
+                  })
+                ];
+              }
             ./hosts/darwin/${hostname}
             ./modules/darwin
             ./modules/common
