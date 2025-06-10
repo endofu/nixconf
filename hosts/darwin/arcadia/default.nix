@@ -1,8 +1,13 @@
 {
+  inputs,
   ...
 }:
 
 {
+  imports = [
+    inputs.sops-nix.darwinModules.sops
+  ];
+
   #nix.enable = false;
   # System configuration
   nixpkgs.config.allowUnfree = true;
@@ -44,6 +49,20 @@
   home-manager.users = {
     arcadia = import ../../../home/users/arcadia;
   };
+  
+  sops.defaultSopsFile = ./../../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
 
+  sops.age.keyFile =  "/Users/arcadia/.config/sops/age/keys.txt";
 
+  sops.secrets.gemini_api_key = {
+    owner = "arcadia";
+  };
+  sops.secrets.anthropic_api_key = {
+    owner = "arcadia";
+  };
+  programs.zsh.shellInit = ''
+    export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
+  '';
 }

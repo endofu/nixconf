@@ -23,7 +23,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-2405,
       darwin,
       home-manager,
       ...
@@ -53,6 +52,7 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit self;
+        
               };
             }
           ] ++ modules;
