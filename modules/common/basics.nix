@@ -26,6 +26,8 @@ in
       curl
       wget
       gnupg
+      nodejs
+      pnpm
       #      gnumake
       #      gcc
       #      libgcc
