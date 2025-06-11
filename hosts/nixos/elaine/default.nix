@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -8,25 +9,24 @@
   imports = [
     # Hardware-specific configuration
     ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   # Include modules by enabling them
   modules = {
+    basics.enable = true;
+    code-agents.enable = true;
+
     desktop = {
       enable = true;
       windowManager = "kde";
     };
-    fonts = {
-      enable = true;
-    };
-    teamviewer = {
-      enable = true;
-    };
-    llm = {
-      enable = true;
-    };
+    fonts.enable = true;
+    teamviewer.enable = true;
+    llm.enable = true;
+
     server = {
       enable = true;
       sshd = {
@@ -141,4 +141,20 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  sops.defaultSopsFile = ./../../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+
+  sops.age.keyFile = "/home/elaine/.config/sops/age/keys.txt";
+
+  sops.secrets.gemini_api_key = {
+    owner = "elaine";
+  };
+  sops.secrets.anthropic_api_key = {
+    owner = "elaine";
+  };
+  programs.bash.shellInit = ''
+    export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
+  '';
 }
