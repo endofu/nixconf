@@ -32,6 +32,7 @@ in
           metrics = false;
         };
         vim_mode = true;
+        soft_wrap = "editor_width";
         autosave = {
           after_delay = {
             milliseconds = 1000;
@@ -40,6 +41,15 @@ in
         formatter = "language_server";
         format_on_save = "on";
         lsp = {
+          vtsls = {
+            settings = {
+              typescript = {
+                preferences = {
+                  preferTypeOnlyAutoImports = true;
+                };
+              };
+            };
+          };
           rust-analyzer = {
 
             binary = {
@@ -77,9 +87,8 @@ in
         context_servers = {
           "Context7" = {
             command = {
-              path = "npx";
+              path = "pnpx";
               args = [
-                "-y"
                 "@upstash/context7-mcp"
               ];
             };
