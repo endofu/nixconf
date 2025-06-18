@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.nixos.copyq = {
-    enable = mkEnableOption "lazygit configuration";
+    enable = mkEnableOption "copyq configuration";
 
   };
 

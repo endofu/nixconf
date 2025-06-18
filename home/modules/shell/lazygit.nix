@@ -28,7 +28,7 @@ in
           };
           git = {
             paging = {
-              externalDiffCommand = "difft --color=always";
+              externalDiffCommand = "difft --display=inline --color=always";
             };
             parseEmoji = true;
 
