@@ -155,6 +155,7 @@
   };
   programs.bash.shellInit = ''
     export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
   '';
 }
