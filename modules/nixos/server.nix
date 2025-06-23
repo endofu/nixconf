@@ -62,6 +62,12 @@ in
         default = false;
         description = "Whether to enable Docker";
       };
+
+      podman = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Podman";
+      };
     };
   };
 
@@ -117,14 +123,30 @@ in
 
     services.mongodb.enable = true;
 
-    # Docker
-    virtualisation.docker = mkIf cfg.services.docker {
-      enable = true;
-      autoPrune = {
+    #Podman
+    virtualisation = {
+      containers.enable = cfg.services.podman;
+
+      podman = mkIf cfg.services.podman {
         enable = true;
-        dates = "weekly";
+        # Create a `docker` alias for podman, to use it as a drop-in replacement
+        dockerCompat = true;
+        dockerSocket.enable = true;
+        # Required for containers under podman-compose to be able to talk to each other.
+        defaultNetwork.settings.dns_enabled = true;
+      };
+
+      docker = mkIf cfg.services.docker {
+        enable = true;
+        autoPrune = {
+          enable = true;
+          dates = "weekly";
+        };
       };
     };
+
+    # systemd.user.enable = true;
+    systemd.user.sockets.podman.enable = cfg.services.podman;
 
     # Common server packages
     environment.systemPackages =
@@ -149,6 +171,12 @@ in
       ]
       ++ optionals cfg.services.docker [
         docker-compose
+      ]
+      ++ optionals cfg.services.podman [
+        dive # look into docker image layers
+        podman-tui # status of containers in the terminal
+        #docker-compose # start group of containers for dev
+        podman-compose # start group of containers for dev;
       ];
 
     # Server-specific settings

@@ -39,6 +39,7 @@
         nginx = false;
         postgresql = false;
         docker = false;
+        podman = true;
       };
     };
     networking = {
@@ -71,6 +72,7 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "podman"
     ];
     #     openssh.authorizedKeys.keys = [
     #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqr1ylpMV5g+CtuHd8jmjh4JB6Bt6EFMCJISYTLmFqM alice@example.com"
