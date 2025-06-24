@@ -18,6 +18,7 @@ in
   config = mkIf cfg.enable {
 
     environment.systemPackages = with pkgs; [
+      warp-terminal
       claude-code
       codex
       opencode
