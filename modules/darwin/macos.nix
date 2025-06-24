@@ -17,16 +17,28 @@ in
   config = mkIf cfg.enable {
 
     security.pam.services.sudo_local.touchIdAuth = true;
-    
+
+    system.startup.chime = false;
+
+    system.keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
+    };
+
     system.defaults = {
       dock = {
         autohide = true;
         tilesize = 24;
         persistent-apps = [ ];
+        static-only = true;
         launchanim = false;
         autohide-delay = 0.0;
         autohide-time-modifier = 0.1;
+        expose-animation-duration = 0.01;
         wvous-bl-corner = 13;
+
+        appswitcher-all-displays = true;
+
       };
       finder = {
         NewWindowTarget = "Home";
@@ -35,13 +47,35 @@ in
         _FXSortFoldersFirst = true;
         FXDefaultSearchScope = "SCcf";
         _FXShowPosixPathInTitle = true;
+        ShowExternalHardDrivesOnDesktop = false;
+        ShowPathbar = true;
+        ShowStatusBar = true;
       };
       NSGlobalDomain = {
         KeyRepeat = 2;
         InitialKeyRepeat = 15;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+        NSAutomaticWindowAnimationsEnabled = false;
+        NSTableViewDefaultSizeMode = 1;
+        NSUseAnimatedFocusRing = false;
+        NSWindowResizeTime = 0.1;
+        "com.apple.keyboard.fnState" = true;
+        "com.apple.sound.beep.feedback" = 0;
+        "com.apple.springing.delay" = 0.1;
+        "com.apple.springing.enabled" = true;
+        "com.apple.trackpad.trackpadCornerClickBehavior" = 1;
+
       };
       trackpad = {
         TrackpadRightClick = true;
+      };
+      universalaccess = {
+        closeViewScrollWheelToggle = true;
+        reduceMotion = true;
+      };
+      WindowManager = {
+        StandardHideDesktopIcons = true;
       };
       controlcenter = {
         AirDrop = true;
