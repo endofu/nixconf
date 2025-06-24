@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib;
@@ -15,6 +16,10 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    environment.systemPackages = [
+      pkgs.reattach-to-user-namespace
+    ];
 
     nix = {
       settings = {

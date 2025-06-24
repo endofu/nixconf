@@ -32,12 +32,15 @@
       */
     };
 
-    #     zsh = {
-    #       enable = true;
-    #       defaultShell = true;
-    #     };
+    zsh = {
+      enable = true;
+      defaultShell = true;
+    };
 
-    tmux.enable = true;
+    tmux = {
+      enable = true;
+      shell = "${pkgs.zsh}/bin/zsh";
+    };
   };
 
   # Configure editors
