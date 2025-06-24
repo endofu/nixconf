@@ -28,6 +28,7 @@ in
       gnupg
       nodejs
       pnpm
+      age
       #      gnumake
       #      gcc
       #      libgcc
