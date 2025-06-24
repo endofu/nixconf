@@ -28,11 +28,7 @@ in
         upgrade = true;
         cleanup = "zap";
       };
-      taps = [
-        "homebrew/core"
-        "homebrew/cask"
-        "homebrew/bundle"
-      ];
+      taps = [ ];
       brews = [
         "mas"
       ];
