@@ -49,6 +49,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = true;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit self;
@@ -82,6 +83,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = true;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit self;
