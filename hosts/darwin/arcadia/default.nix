@@ -8,7 +8,8 @@
     inputs.sops-nix.darwinModules.sops
   ];
 
-  #nix.enable = false;
+  nix.enable = false;
+   
   # System configuration
   nixpkgs.config.allowUnfree = true;
 
