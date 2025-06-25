@@ -41,6 +41,7 @@ in
         "anydesk"
         "displaylink"
         "figma"
+        "linear-linear"
 
         # Dev tools
         "syntax-highlight"

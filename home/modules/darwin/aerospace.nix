@@ -40,6 +40,7 @@ in
             ctrl-alt-n = "workspace Notes";
             ctrl-alt-t = "workspace Tasks";
             ctrl-alt-i = "workspace IDE";
+            ctrl-alt-p = "workspace Planning";
 
             ctrl-shift-alt-b = "move-node-to-workspace Browser";
             ctrl-shift-alt-c = "move-node-to-workspace Console";
@@ -47,6 +48,7 @@ in
             ctrl-shift-alt-n = "move-node-to-workspace Notes";
             ctrl-shift-alt-t = "move-node-to-workspace Tasks";
             ctrl-shift-alt-i = "move-node-to-workspace IDE";
+            ctrl-shift-alt-p = "move-node-to-workspace Planning";
 
             ctrl-alt-1 = "workspace 1";
             ctrl-alt-2 = "workspace 2";
@@ -121,6 +123,15 @@ in
               };
               run = [
                 "move-node-to-workspace IDE"
+              ];
+            }
+            {
+              "if" = {
+                app-id = "com.linear";
+                # during-aerospace-startup = true;
+              };
+              run = [
+                "move-node-to-workspace Planning"
               ];
             }
           ];
