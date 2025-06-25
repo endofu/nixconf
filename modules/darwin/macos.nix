@@ -84,6 +84,9 @@ in
         Display = true;
         Sound = true;
       };
+      ".GlobalPreferences" = {
+        "com.apple.sound.beep.sound" = "/System/Library/Sounds/Submarine.aiff";
+      };
       CustomUserPreferences = {
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
