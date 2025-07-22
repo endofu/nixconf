@@ -14,5 +14,24 @@
         "claude-sonnet-4-20250514": {}
       }
     }
+  },
+  "mcp": {
+    "my-local-mcp-server": {
+      "type": "local",
+      "command": ["pnpx", "effect-mcp@latest"],
+      "enabled": true
+    },
+
+    "linear-mcp": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/sse",
+      "enabled": true
+    },
+
+    "context7-mcp": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    }
   }
 }
