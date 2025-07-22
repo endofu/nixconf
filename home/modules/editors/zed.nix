@@ -22,6 +22,9 @@ in
         "lua"
         "toml"
         "oxocarbon"
+        "prisma"
+        "env"
+        "log"
       ];
       userKeymaps = [ ];
 
