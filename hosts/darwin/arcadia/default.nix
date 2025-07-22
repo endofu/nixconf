@@ -9,7 +9,7 @@
   ];
 
   nix.enable = false;
-   
+
   # System configuration
   nixpkgs.config.allowUnfree = true;
 
@@ -45,16 +45,17 @@
     homebrew.enable = true;
     macos.enable = true;
     macos-apps.enable = true;
+    podman.enable = true;
   };
 
   home-manager.users = {
     arcadia = import ../../../home/users/arcadia;
   };
-  
+
   sops.defaultSopsFile = ./../../../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
 
-  sops.age.keyFile =  "/Users/arcadia/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/Users/arcadia/.config/sops/age/keys.txt";
 
   sops.secrets.gemini_api_key = {
     owner = "arcadia";
@@ -64,6 +65,8 @@
   };
   programs.zsh.shellInit = ''
     export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    export GOOGLE_GENERATIVE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
   '';
 }

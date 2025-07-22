@@ -10,6 +10,6 @@
     ./neovim.nix
     ./vscode.nix
     ./zed.nix
+    ./opencode.nix
   ];
 }
-
