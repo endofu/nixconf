@@ -9,5 +9,6 @@
     ./homebrew.nix
     ./macos.nix
     ./macos-apps.nix
+    ./podman.nix
   ];
 }
