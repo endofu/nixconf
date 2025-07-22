@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -166,5 +171,9 @@ in
     #         minus-style = "syntax #3f0001";
     #       };
     #     };
+    programs.gh = {
+      enable = true;
+      extensions = [ pkgs.gh-dash ];
+    };
   };
 }
