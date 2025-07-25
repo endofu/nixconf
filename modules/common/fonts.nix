@@ -18,6 +18,7 @@ in
   config = mkIf cfg.enable {
     fonts.packages = with pkgs; [
       nerd-fonts.cousine
+      nerd-fonts.atkynson-mono
       nerd-fonts.inconsolata
       nerd-fonts.fira-code
       nerd-fonts.hasklug
