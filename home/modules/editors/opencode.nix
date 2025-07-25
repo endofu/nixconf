@@ -17,7 +17,15 @@ in
 
   config = mkIf cfg.enable {
     # Install neovim and set as default editor if requested
-    # programs.neovim = {
+    # programs.bun = {
+    #   enable = true;
+    #   settings = {
+    #     smol = true;
+    #     telemetry = false;
+    #     test = {
+    #       coverage = true;
+    #     };
+    #   };
     # };
 
     # Extra packages for neovim
@@ -25,6 +33,6 @@ in
     #   # Core dependencies
     # ];
 
-    home.file.".config/opencode.opencode.json".source = ../../dotfiles/opencode.json;
+    home.file.".config/opencode/opencode.json".source = ../../dotfiles/opencode.json;
   };
 }
