@@ -23,11 +23,12 @@ in
 
       };
       open-webui = {
-        enable = true;
+        enable = false;
       };
 
     };
     environment.systemPackages = with pkgs; [
+      # postgresql
       librechat
     ];
   };
