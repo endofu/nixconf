@@ -42,6 +42,7 @@ in
         "displaylink"
         "figma"
         "linear-linear"
+        "balenaetcher"
 
         # Dev tools
         "syntax-highlight"
