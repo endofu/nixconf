@@ -28,9 +28,10 @@ in
         upgrade = true;
         cleanup = "zap";
       };
-      taps = [ ];
+      taps = [ "sst/tap" ];
       brews = [
         "mas"
+        "opencode"
       ];
       casks = [
         # Basic apps
