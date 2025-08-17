@@ -21,6 +21,7 @@ in
         "nix"
         "lua"
         "toml"
+        "astro"
         "oxocarbon"
         "prisma"
         "env"
