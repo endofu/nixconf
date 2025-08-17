@@ -37,7 +37,7 @@
   # Enable modules
   modules = {
     basics.enable = true;
-    code-agents.enable = true;
+    code-agents.enable = false;
     fonts.enable = true;
 
     karabiner.enable = true;
