@@ -20,6 +20,7 @@ in
         "sway"
         "gnome"
         "kde"
+        "xfce"
       ];
       default = "gnome";
       description = "Window manager to use";
@@ -36,8 +37,16 @@ in
       displayManager.gdm.enable = cfg.windowManager == "gnome";
       desktopManager.gnome.enable = cfg.windowManager == "gnome";
 
+      displayManager.lightdm.enable = cfg.windowManager == "xfce";
+      desktopManager.xfce.enable = cfg.windowManager == "xfce";
+
       xserver = {
         enable = true;
+
+        xkb = {
+          layout = "us";
+          variant = "";
+        };
 
         windowManager = {
           i3.enable = cfg.windowManager == "i3";

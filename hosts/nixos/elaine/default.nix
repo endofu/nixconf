@@ -74,11 +74,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "podman"
+      "podman" # TODO: move this to module
     ];
-    #     openssh.authorizedKeys.keys = [
-    #       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqr1ylpMV5g+CtuHd8jmjh4JB6Bt6EFMCJISYTLmFqM alice@example.com"
-    #     ];
   };
 
   home-manager.users = {
