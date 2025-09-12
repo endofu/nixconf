@@ -37,9 +37,7 @@ in
       displayManager.gdm.enable = cfg.windowManager == "gnome";
       desktopManager.gnome.enable = cfg.windowManager == "gnome";
 
-      displayManager.lightdm.enable = cfg.windowManager == "xfce";
-      desktopManager.xfce.enable = cfg.windowManager == "xfce";
-
+      
       xserver = {
         enable = true;
 
@@ -47,6 +45,9 @@ in
           layout = "us";
           variant = "";
         };
+
+	displayManager.lightdm.enable = cfg.windowManager == "xfce";
+        desktopManager.xfce.enable = cfg.windowManager == "xfce";
 
         windowManager = {
           i3.enable = cfg.windowManager == "i3";

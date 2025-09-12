@@ -15,7 +15,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "darwin";
     };
-    
+
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
@@ -53,10 +53,11 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit self;
-        
+
               };
             }
-          ] ++ modules;
+          ]
+          ++ modules;
           specialArgs = {
             inherit inputs;
             inherit self;
@@ -66,16 +67,16 @@
       # Darwin configuration helpers
       darwinSystem =
         system: hostname: modules:
-          darwin.lib.darwinSystem {
-            inherit system;
-            modules = [
-              {
-                nixpkgs.overlays = [
-                  (final: prev: {
-                    nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
-                  })
-                ];
-              }
+        darwin.lib.darwinSystem {
+          inherit system;
+          modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
+                })
+              ];
+            }
             ./hosts/darwin/${hostname}
             ./modules/darwin
             ./modules/common
@@ -89,7 +90,8 @@
                 inherit self;
               };
             }
-          ] ++ modules;
+          ]
+          ++ modules;
 
           specialArgs = {
             inherit inputs;
@@ -102,6 +104,7 @@
       # NixOS configurations
       nixosConfigurations = {
         elaine = nixosSystem "x86_64-linux" "elaine" [ ];
+        sparta = nixosSystem "x86_64-linux" "sparta" [ ];
       };
 
       # Darwin configurations

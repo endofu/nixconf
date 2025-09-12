@@ -55,9 +55,9 @@ in
   };
 
   system = mkMerge [
-    (mkIf isNixOS {
-      stateVersion = "24.11";
-    })
+  #  (mkIf isNixOS {
+  #     stateVersion = "24.11";
+  #  })
 
     (mkIf isDarwin {
       activationScripts.postActivation.text = ''
