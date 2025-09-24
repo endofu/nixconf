@@ -13,7 +13,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "darwin";
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -58,6 +58,7 @@
             }
           ]
           ++ modules;
+
           specialArgs = {
             inherit inputs;
             inherit self;
@@ -67,50 +68,17 @@
       # Darwin configuration helpers
       darwinSystem =
         system: hostname: modules:
-        let
-          # 1. Define the overlay in one place.
-          my-overlay = final: prev: {
-            # nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
-            inherit (inputs.nixpkgs-2405.legacyPackages.${prev.system}) karabiner-elements;
-            # We override the main `zig` package.
-            zig = prev.zig.overrideAttrs (old: {
-              meta = old.meta // {
-                broken = false;
-              };
-            });
-          };
-
-          # 2. Create the final, patched pkgs set BEFORE the system is evaluated.
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            config.allowBroken = true;
-            overlays = [ my-overlay ];
-          };
-        in
         darwin.lib.darwinSystem {
           inherit system;
-
-          specialArgs = {
-            inherit inputs;
-            inherit self;
-            inherit system;
-            inherit pkgs;
-          };
-
           modules = [
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
-                  zig-hook = prev.zig-hook.overrideAttrs (old: {
-                    meta = old.meta // {
-                      broken = false;
-                    };
-                  });
-                })
-              ];
-            }
+            { nixpkgs.config.allowBroken = true; }
+            # {
+            #   nixpkgs.overlays = [
+            #     (final: prev: {
+            #       nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
+            #     })
+            #   ];
+            # }
             ./hosts/darwin/${hostname}
             ./modules/darwin
             ./modules/common
@@ -120,12 +88,18 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "bak";
               home-manager.extraSpecialArgs = {
-                inherit inputs self;
+                inherit inputs;
+                inherit self;
               };
             }
           ]
           ++ modules;
 
+          specialArgs = {
+            inherit inputs;
+            inherit self;
+            inherit system;
+          };
         };
     in
     {

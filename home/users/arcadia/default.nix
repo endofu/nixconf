@@ -13,6 +13,9 @@
 
   programs.home-manager.enable = true;
 
+  # Allow broken packages for Darwin
+  nixpkgs.config.allowBroken = true;
+
   # Common configuration for both NixOS and Darwin
   home.username = "arcadia";
   home.stateVersion = "24.11";
