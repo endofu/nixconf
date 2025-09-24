@@ -35,7 +35,7 @@ in
       ];
       casks = [
         # Basic apps
-        "zen-browser"
+        "zen"
         "dropbox"
         "ticktick"
         "teamviewer"
