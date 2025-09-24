@@ -13,7 +13,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -67,13 +67,47 @@
       # Darwin configuration helpers
       darwinSystem =
         system: hostname: modules:
+        let
+          # 1. Define the overlay in one place.
+          my-overlay = final: prev: {
+            # nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
+            inherit (inputs.nixpkgs-2405.legacyPackages.${prev.system}) karabiner-elements;
+            # We override the main `zig` package.
+            zig = prev.zig.overrideAttrs (old: {
+              meta = old.meta // {
+                broken = false;
+              };
+            });
+          };
+
+          # 2. Create the final, patched pkgs set BEFORE the system is evaluated.
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            config.allowBroken = true;
+            overlays = [ my-overlay ];
+          };
+        in
         darwin.lib.darwinSystem {
           inherit system;
+
+          specialArgs = {
+            inherit inputs;
+            inherit self;
+            inherit system;
+            inherit pkgs;
+          };
+
           modules = [
             {
               nixpkgs.overlays = [
                 (final: prev: {
                   nodejs_20 = inputs.nixpkgs-2411.legacyPackages.${system}.nodejs_20;
+                  zig-hook = prev.zig-hook.overrideAttrs (old: {
+                    meta = old.meta // {
+                      broken = false;
+                    };
+                  });
                 })
               ];
             }
@@ -86,18 +120,12 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "bak";
               home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit self;
+                inherit inputs self;
               };
             }
           ]
           ++ modules;
 
-          specialArgs = {
-            inherit inputs;
-            inherit self;
-            inherit system;
-          };
         };
     in
     {

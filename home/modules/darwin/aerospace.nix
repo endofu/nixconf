@@ -36,6 +36,7 @@ in
 
             ctrl-alt-b = "workspace Browser";
             ctrl-alt-c = "workspace Console";
+            ctrl-alt-d = "workspace Design";
             ctrl-alt-f = "workspace Finder";
             ctrl-alt-n = "workspace Notes";
             ctrl-alt-t = "workspace Tasks";
@@ -44,6 +45,7 @@ in
 
             ctrl-shift-alt-b = "move-node-to-workspace Browser";
             ctrl-shift-alt-c = "move-node-to-workspace Console";
+            ctrl-shift-alt-d = "move-node-to-workspace Design";
             ctrl-shift-alt-f = "move-node-to-workspace Finder";
             ctrl-shift-alt-n = "move-node-to-workspace Notes";
             ctrl-shift-alt-t = "move-node-to-workspace Tasks";
@@ -87,6 +89,15 @@ in
               };
               run = [
                 "move-node-to-workspace Console"
+              ];
+            }
+            {
+              "if" = {
+                app-id = "com.figma.Desktop";
+                # during-aerospace-startup = true;
+              };
+              run = [
+                "move-node-to-workspace Design"
               ];
             }
             {
