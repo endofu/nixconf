@@ -16,7 +16,7 @@
     }
   },
   "mcp": {
-    "my-local-mcp-server": {
+    "effect-mcp": {
       "type": "local",
       "command": ["pnpx", "effect-mcp@latest"],
       "enabled": true
@@ -31,6 +31,18 @@
     "context7-mcp": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+
+    "playwright-mcp": {
+      "type": "local",
+      "command": ["pnpx", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+
+    "google-devtools-mcp": {
+      "type": "local",
+      "command": ["pnpx", "chrome-devtools-mcp@latest"],
       "enabled": true
     }
   }

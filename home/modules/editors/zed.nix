@@ -90,13 +90,53 @@ in
 
         context_servers = {
           "Context7" = {
-            command = {
-              path = "pnpx";
-              args = [
-                "@upstash/context7-mcp"
-              ];
-            };
-            settings = { };
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "@upstash/context7-mcp"
+            ];
+            env = { };
+          };
+          "Playwright" = {
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "@playwright/mcp@latest"
+            ];
+            env = { };
+          };
+          "Chrome-Devtools" = {
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "chrome-devtools-mcp@latest"
+            ];
+            env = { };
+          };
+          "Linear" = {
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "mcp-remote"
+              "https://mcp.linear.app/sse"
+            ];
+            env = { };
+          };
+          "Effect" = {
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "effect-mcp@latest"
+            ];
+            env = { };
+          };
+          "Sequential" = {
+            source = "custom";
+            command = "pnpx";
+            args = [
+              "@modelcontextprotocol/server-sequential-thinking"
+            ];
+            env = { };
           };
         };
       };
