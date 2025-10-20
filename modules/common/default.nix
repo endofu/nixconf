@@ -6,6 +6,7 @@
   imports = [
     ./basics.nix
     ./fonts.nix
-    ./code-agents.nix
+    ./claude-code.nix
+    ./ffmpeg.nix
   ];
 }

@@ -37,7 +37,8 @@
   # Enable modules
   modules = {
     basics.enable = true;
-    code-agents.enable = false;
+    claude-code.enable = true;
+    ffmpeg.enable = true;
     fonts.enable = true;
 
     karabiner.enable = true;

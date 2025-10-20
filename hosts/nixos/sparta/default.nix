@@ -16,7 +16,7 @@
   # Include modules by enabling them
   modules = {
     basics.enable = true;
-    code-agents.enable = true;
+    claude-code.enable = true;
 
     desktop = {
       enable = true;
