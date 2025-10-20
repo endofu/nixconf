@@ -44,6 +44,7 @@ in
         "figma"
         "linear-linear"
         "balenaetcher"
+        "vlc"
 
         # Dev tools
         "syntax-highlight"
