@@ -84,6 +84,8 @@
   # SSH configuration
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
+
     matchBlocks = {
       "github.com" = {
         identityFile = "${config.home.homeDirectory}/.ssh/github";
@@ -91,6 +93,20 @@
           AddKeysToAgent = "yes";
         };
       };
+
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
+
       /*
         "server" = {
           hostname = "server.example.com";

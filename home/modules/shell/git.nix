@@ -53,32 +53,22 @@ in
     programs.git = {
       enable = true;
 
-      userName = mkIf (cfg.userName != "") cfg.userName;
-      userEmail = mkIf (cfg.userEmail != "") cfg.userEmail;
+      settings = {
+        user.name = mkIf (cfg.userName != "") cfg.userName;
+        user.email = mkIf (cfg.userEmail != "") cfg.userEmail;
 
-      signing = mkIf cfg.signing.enable {
-        key = cfg.signing.key;
-        signByDefault = true;
-      };
+        alias = {
+          co = "checkout";
+          br = "branch";
+          ci = "commit";
+          st = "status";
+          unstage = "reset HEAD --";
+          last = "log -1 HEAD";
+          visual = "!gitk";
+          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        }
+        // cfg.aliases;
 
-      aliases = {
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        st = "status";
-        unstage = "reset HEAD --";
-        last = "log -1 HEAD";
-        visual = "!gitk";
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      } // cfg.aliases;
-
-      difftastic = {
-        enable = true;
-        display = "inline";
-        enableAsDifftool = true;
-      };
-
-      extraConfig = {
         init.defaultBranch = "main";
         pull.rebase = true;
         column.ui = "auto";
@@ -116,6 +106,17 @@ in
           conflictStyle = "diff3";
         };
       };
+
+      signing = mkIf cfg.signing.enable {
+        key = cfg.signing.key;
+        signByDefault = true;
+      };
+
+      # difftastic = {
+      #   enable = true;
+      #   display = "inline";
+      #   enableAsDifftool = true;
+      # };
 
       ignores = [
         # OS specific
@@ -159,6 +160,17 @@ in
         ".direnv/"
         ".envrc"
       ];
+    };
+
+    programs.difftastic = {
+      enable = true;
+      git = {
+        enable = true;
+        diffToolMode = true;
+      };
+      options = {
+        display = "inline";
+      };
     };
 
     # Add delta for better diffs if available
