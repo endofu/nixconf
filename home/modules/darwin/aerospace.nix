@@ -34,6 +34,7 @@ in
             ctrl-alt-k = "focus up --boundaries all-monitors-outer-frame";
             ctrl-alt-l = "focus right --boundaries all-monitors-outer-frame";
 
+            ctrl-alt-a = "workspace Agent";
             ctrl-alt-b = "workspace Browser";
             ctrl-alt-c = "workspace Console";
             ctrl-alt-d = "workspace Design";
@@ -43,6 +44,7 @@ in
             ctrl-alt-i = "workspace IDE";
             ctrl-alt-p = "workspace Planning";
 
+            ctrl-shift-alt-a = "move-node-to-workspace Agent";
             ctrl-shift-alt-b = "move-node-to-workspace Browser";
             ctrl-shift-alt-c = "move-node-to-workspace Console";
             ctrl-shift-alt-d = "move-node-to-workspace Design";
@@ -93,6 +95,15 @@ in
             }
             {
               "if" = {
+                app-id = "com.mitchellh.ghostty";
+                # during-aerospace-startup = true;
+              };
+              run = [
+                "move-node-to-workspace Console"
+              ];
+            }
+            {
+              "if" = {
                 app-id = "com.figma.Desktop";
                 # during-aerospace-startup = true;
               };
@@ -134,6 +145,15 @@ in
               };
               run = [
                 "move-node-to-workspace IDE"
+              ];
+            }
+            {
+              "if" = {
+                app-id = "com.google.antigravity";
+                # during-aerospace-startup = true;
+              };
+              run = [
+                "move-node-to-workspace Agent"
               ];
             }
             {

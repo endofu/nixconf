@@ -109,6 +109,7 @@ in
     home.file = {
       ".local/share/mc/skins/ajnasz-blue.ini".source = ../../dotfiles/ajnasz-blue.ini;
       ".config/mc/ini".source = ../../dotfiles/mc.ini;
+      ".config/ghostty/config".source = ../../dotfiles/ghostty/config;
     };
 
     # Set up shell aliases for the replacement tools

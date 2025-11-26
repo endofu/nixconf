@@ -45,6 +45,7 @@ in
         "linear-linear"
         "balenaetcher"
         "vlc"
+        "antigravity"
 
         # Dev tools
         "syntax-highlight"
