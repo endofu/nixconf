@@ -20,7 +20,8 @@ in
     programs = {
       aerospace = {
         enable = true;
-        userSettings = {
+        launchd.enable = true;
+        settings = {
           start-at-login = true;
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
