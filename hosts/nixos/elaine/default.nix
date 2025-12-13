@@ -14,6 +14,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  system.stateVersion = "25.05";
+
   # Include modules by enabling them
   modules = {
     basics.enable = true;
