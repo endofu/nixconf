@@ -20,6 +20,7 @@
   modules = {
     basics.enable = true;
     claude-code.enable = true;
+    antigravity.enable = true;
 
     desktop = {
       enable = true;
