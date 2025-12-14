@@ -5,14 +5,14 @@
 { pkgs, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.sops-nix.nixosModules.sops
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   nixpkgs.config.allowUnfree = true;
-    
+
   # Include modules by enabling them
   modules = {
     basics.enable = true;
@@ -39,6 +39,7 @@
         postgresql = false;
         docker = false;
         podman = true;
+        mosquitto = true;
       };
     };
     networking = {
@@ -59,7 +60,6 @@
       };
     };
   };
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -95,7 +95,6 @@
     LC_TELEPHONE = "nl_NL.UTF-8";
     LC_TIME = "nl_NL.UTF-8";
   };
-
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

@@ -63,6 +63,12 @@ in
         description = "Whether to enable Docker";
       };
 
+      mosquitto = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Mosquitto";
+      };
+
       podman = mkOption {
         type = types.bool;
         default = false;
@@ -92,7 +98,10 @@ in
 
     # Firewall configuration for SSH
     networking.firewall = mkIf cfg.sshd.enable {
-      allowedTCPPorts = [ 22 ];
+      allowedTCPPorts = [
+        22
+        1883 # TODO: move this to mosquitto config
+      ];
     };
 
     # Nginx web server
@@ -122,6 +131,22 @@ in
     };
 
     # services.mongodb.enable = true;
+    # services.mongodb.enable = true;
+
+    services.mosquitto = mkIf cfg.services.mosquitto {
+      enable = true;
+      listeners = [
+        {
+          acl = [ "pattern readwrite #" ];
+          omitPasswordAuth = true;
+          settings.allow_anonymous = true;
+        }
+      ];
+    };
+
+    # networking.firewall = mkIf cfg.mosquitto.enable {
+    #   allowedTCPPorts = [ 1883 ];
+    # };
 
     #Podman
     virtualisation = {
