@@ -29,6 +29,7 @@
     fonts.enable = true;
     teamviewer.enable = true;
     llm.enable = true;
+    vnc.enable = true;
 
     server = {
       enable = true;

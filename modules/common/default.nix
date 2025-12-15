@@ -9,5 +9,6 @@
     ./claude-code.nix
     ./antigravity.nix
     ./ffmpeg.nix
+    ./vnc.nix
   ];
 }
