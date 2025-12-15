@@ -46,7 +46,7 @@ in
         "balenaetcher"
         "vlc"
         "antigravity"
-
+        "raspberry-pi-imager"
         # Dev tools
         "syntax-highlight"
       ];
