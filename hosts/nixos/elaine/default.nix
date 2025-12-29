@@ -43,6 +43,7 @@
         nginx = false;
         postgresql = false;
         docker = false;
+        tailscale = true;
         podman = true;
       };
     };
