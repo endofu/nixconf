@@ -28,31 +28,31 @@ in
         upgrade = true;
         cleanup = "zap";
       };
-      taps = [ "sst/tap" ];
+      # taps = [ "sst/tap" ];
       brews = [
-        "mas"
-        "opencode"
+        # "opencode"
+        # "mas"
       ];
       casks = [
         # Basic apps
         "zen"
-        "dropbox"
+        # "dropbox"
         "ticktick"
-        "teamviewer"
-        "anydesk"
-        "displaylink"
+        # "teamviewer"
+        # "anydesk"
+        # "displaylink"
         "figma"
         "linear-linear"
         "balenaetcher"
         "vlc"
         "antigravity"
-        "raspberry-pi-imager"
+        # "raspberry-pi-imager"
         # Dev tools
         "syntax-highlight"
       ];
-      masApps = {
-        "Paste - Endless Clipboard" = 967805235;
-      };
+      # masApps = {
+      #   "Paste - Endless Clipboard" = 967805235;
+      # };
     };
 
   };

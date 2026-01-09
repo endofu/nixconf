@@ -112,6 +112,8 @@
       # Darwin configurations
       darwinConfigurations = {
         arcadia = darwinSystem "x86_64-darwin" "arcadia" [ ];
+        samos = darwinSystem "aarch64-darwin" "samos" [ ];
+
       };
 
       # # Custom packages
