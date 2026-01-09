@@ -25,6 +25,7 @@
     fonts.enable = true;
     teamviewer.enable = false;
     llm.enable = false;
+    tailscale.enable = true;
 
     server = {
       enable = true;

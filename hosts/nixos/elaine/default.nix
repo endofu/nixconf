@@ -30,6 +30,7 @@
     teamviewer.enable = true;
     llm.enable = true;
     vnc.enable = true;
+    tailscale.enable = true;
 
     server = {
       enable = true;
@@ -43,7 +44,6 @@
         nginx = false;
         postgresql = false;
         docker = false;
-        tailscale = true;
         podman = true;
       };
     };

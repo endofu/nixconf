@@ -10,5 +10,6 @@
     ./antigravity.nix
     ./ffmpeg.nix
     ./vnc.nix
+    ./tailscale.nix
   ];
 }

@@ -69,12 +69,6 @@ in
         description = "Whether to enable Mosquitto";
       };
 
-      tailscale = mkOption {
-        type = types.bool;
-        default = false;
-        description = "Whether to enable Tailscale";
-      };
-
       podman = mkOption {
         type = types.bool;
         default = false;
@@ -148,10 +142,6 @@ in
           settings.allow_anonymous = true;
         }
       ];
-    };
-
-    services.tailscale = mkIf cfg.services.tailscale {
-      enable = true;
     };
 
     # networking.firewall = mkIf cfg.mosquitto.enable {
