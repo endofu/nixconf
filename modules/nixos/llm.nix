@@ -12,23 +12,39 @@ let
 in
 {
   options.modules.llm = {
-    enable = mkEnableOption "llm configuration";
+    enable = mkEnableOption "LLM tools (ollama service)";
+
+    ollama = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Enable ollama service for local LLM inference";
+      };
+
+      cuda = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Use CUDA-enabled ollama package for GPU acceleration";
+      };
+    };
+
+    open-webui = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable Open WebUI for ollama";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
-    services = {
-      ollama = {
-        enable = true;
-        package = pkgs.ollama-cuda;
-      };
-      open-webui = {
-        enable = false;
-      };
-
+    services.ollama = mkIf cfg.ollama.enable {
+      enable = true;
+      package = if cfg.ollama.cuda then pkgs.ollama-cuda else pkgs.ollama;
     };
-    environment.systemPackages = with pkgs; [
-      # postgresql
-      librechat
-    ];
+
+    services.open-webui = mkIf cfg.open-webui.enable {
+      enable = true;
+    };
   };
 }

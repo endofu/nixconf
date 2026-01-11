@@ -11,5 +11,6 @@
     ./macos-apps.nix
     ./podman.nix
     ./ghostty.nix
+    ./llm.nix
   ];
 }

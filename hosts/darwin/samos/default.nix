@@ -41,6 +41,7 @@
     ffmpeg.enable = true;
     fonts.enable = true;
     tailscale.enable = true;
+    llm.enable = true;
 
     karabiner.enable = true;
     darwin-basics.enable = true;
