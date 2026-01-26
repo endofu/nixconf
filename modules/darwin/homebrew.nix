@@ -49,6 +49,7 @@ in
         # "raspberry-pi-imager"
         # Dev tools
         "syntax-highlight"
+        "claude"
       ];
       # masApps = {
       #   "Paste - Endless Clipboard" = 967805235;
