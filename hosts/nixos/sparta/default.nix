@@ -40,8 +40,10 @@
         postgresql = false;
         docker = false;
         podman = true;
-        mosquitto = true;
       };
+    };
+    mosquitto = {
+      enable = true;
     };
     networking = {
       enable = true;

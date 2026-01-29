@@ -11,5 +11,6 @@
     ./ffmpeg.nix
     ./vnc.nix
     ./tailscale.nix
+    ./mosquitto.nix
   ];
 }

@@ -42,6 +42,10 @@
     fonts.enable = true;
     tailscale.enable = true;
     llm.enable = true;
+    mosquitto = {
+      enable = true;
+      mqttui.enable = true;
+    };
 
     karabiner.enable = true;
     darwin-basics.enable = true;
