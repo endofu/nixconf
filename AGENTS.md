@@ -26,8 +26,12 @@ sudo nixos-rebuild switch --flake .#sparta
 # Build and activate configuration
 darwin-rebuild switch --flake .#<hostname>
 
+# Using nh (preferred)
+nh darwin switch ~/Code/nixconf#darwinConfigurations.<hostname>
+
 # Available hosts: arcadia, samos
 darwin-rebuild switch --flake .#samos
+nh darwin switch ~/Code/nixconf#darwinConfigurations.samos
 ```
 
 ### Testing Changes
