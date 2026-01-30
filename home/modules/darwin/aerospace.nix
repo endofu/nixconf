@@ -159,6 +159,15 @@ in
             }
             {
               "if" = {
+                app-id = "com.anthropic.claudefordesktop";
+                # during-aerospace-startup = true;
+              };
+              run = [
+                "move-node-to-workspace Agent"
+              ];
+            }
+            {
+              "if" = {
                 app-id = "com.linear";
                 # during-aerospace-startup = true;
               };
