@@ -49,6 +49,10 @@
     macos-apps.enable = true;
     podman.enable = true;
     ghostty.enable = true;
+    mosquitto = {
+      enable = false;
+      mqttui.enable = true;
+    };
   };
 
   home-manager.users = {
