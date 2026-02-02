@@ -38,6 +38,7 @@
   modules = {
     basics.enable = true;
     claude-code.enable = true;
+    opencode.enable = true;
     ffmpeg.enable = true;
     fonts.enable = true;
     tailscale.enable = true;
