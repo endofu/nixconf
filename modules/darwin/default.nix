@@ -12,6 +12,7 @@
     ./podman.nix
     ./ghostty.nix
     ./llm.nix
+    ./codex.nix
     ./mosquitto.nix
   ];
 }

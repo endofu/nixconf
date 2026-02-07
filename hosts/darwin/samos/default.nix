@@ -42,6 +42,8 @@
     fonts.enable = true;
     tailscale.enable = true;
     llm.enable = true;
+    codex.enable = true;
+    codex-cli.enable = true;
     mosquitto = {
       enable = true;
       mqttui.enable = true;
