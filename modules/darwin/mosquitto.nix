@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -8,6 +9,11 @@ with lib;
 
 let
   cfg = config.modules.mosquitto;
+
+  mosquittoConf = pkgs.writeText "mosquitto.conf" ''
+    listener 1883 0.0.0.0
+    allow_anonymous true
+  '';
 in
 {
   # Darwin-specific mosquitto configuration
@@ -20,7 +26,7 @@ in
         ProgramArguments = [
           "/opt/homebrew/opt/mosquitto/sbin/mosquitto"
           "-c"
-          "/opt/homebrew/etc/mosquitto/mosquitto.conf"
+          "${mosquittoConf}"
         ];
         RunAtLoad = true;
         KeepAlive = true;
