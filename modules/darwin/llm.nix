@@ -25,7 +25,7 @@ in
   config = mkIf cfg.enable {
     # Ollama on macOS is installed via Homebrew cask
     homebrew.casks = optionals cfg.ollama.enable [
-      "ollama"
+      "ollama-app"
     ];
   };
 }
