@@ -31,6 +31,7 @@
     llm.enable = true;
     vnc.enable = true;
     tailscale.enable = true;
+    opencode.enable = true;
 
     server = {
       enable = true;
