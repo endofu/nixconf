@@ -32,6 +32,7 @@
     vnc.enable = true;
     tailscale.enable = true;
     opencode.enable = true;
+    gemini.enable = true;
 
     server = {
       enable = true;

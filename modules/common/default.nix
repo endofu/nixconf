@@ -9,6 +9,7 @@
     ./claude-code.nix
     ./codex-cli.nix
     ./opencode.nix
+    ./gemini.nix
     ./antigravity.nix
     ./ffmpeg.nix
     ./vnc.nix
