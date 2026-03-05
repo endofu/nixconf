@@ -33,6 +33,7 @@
     tailscale.enable = true;
     opencode.enable = true;
     gemini.enable = true;
+    ghostty.enable = true;
 
     server = {
       enable = true;

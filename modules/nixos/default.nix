@@ -11,6 +11,6 @@
     ./llm.nix
     ./teamviewer.nix
     ./mosquitto.nix
+    ./ghostty.nix
   ];
 }
-
