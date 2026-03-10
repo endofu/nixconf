@@ -29,6 +29,7 @@ in
       nodejs
       pnpm
       age
+      flatbuffers
       #      gnumake
       #      gcc
       #      libgcc
