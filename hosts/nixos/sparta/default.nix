@@ -27,6 +27,11 @@
     llm.enable = false;
     tailscale.enable = true;
 
+    mosquitto = {
+      enable = true;
+      mqttui.enable = true;
+    };
+
     server = {
       enable = true;
       sshd = {
@@ -41,9 +46,6 @@
         docker = false;
         podman = true;
       };
-    };
-    mosquitto = {
-      enable = true;
     };
     networking = {
       enable = true;
