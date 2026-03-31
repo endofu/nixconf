@@ -50,6 +50,7 @@ in
         # Dev tools
         "syntax-highlight"
         "claude"
+        "elgato-studio"
       ];
       # masApps = {
       #   "Paste - Endless Clipboard" = 967805235;
