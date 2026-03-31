@@ -50,6 +50,7 @@
     macos-apps.enable = true;
     podman.enable = true;
     ghostty.enable = true;
+    gemini.enable = true;
     mosquitto = {
       enable = false;
       mqttui.enable = true;
