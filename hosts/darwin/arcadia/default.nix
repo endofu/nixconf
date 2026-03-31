@@ -38,7 +38,7 @@
   modules = {
     basics.enable = true;
     claude-code.enable = true;
-    opencode.enable = true;
+    opencode.enable = false;
     ffmpeg.enable = true;
     fonts.enable = true;
     tailscale.enable = true;
