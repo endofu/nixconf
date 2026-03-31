@@ -93,6 +93,12 @@
           AddKeysToAgent = "yes";
         };
       };
+      "codeberg.org" = {
+        identityFile = "${config.home.homeDirectory}/.ssh/github";
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
+      };
 
       "*" = {
         forwardAgent = false;
