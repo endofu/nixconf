@@ -27,13 +27,15 @@
       windowManager = "kde";
     };
     fonts.enable = true;
-    teamviewer.enable = true;
+    teamviewer.enable = false;
     llm.enable = true;
     vnc.enable = true;
     tailscale.enable = true;
     opencode.enable = true;
     gemini.enable = true;
     ghostty.enable = true;
+    # resilio.enable = true;
+    audacity.enable = true;
 
     server = {
       enable = true;

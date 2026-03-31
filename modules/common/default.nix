@@ -12,6 +12,7 @@
     ./gemini.nix
     ./antigravity.nix
     ./ffmpeg.nix
+    ./audacity.nix
     ./vnc.nix
     ./tailscale.nix
     ./mosquitto.nix
