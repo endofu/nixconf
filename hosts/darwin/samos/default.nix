@@ -44,6 +44,8 @@
     llm.enable = true;
     codex.enable = true;
     codex-cli.enable = true;
+    opencode.enable = true;
+    gemini.enable = true;
     mosquitto = {
       enable = true;
       mqttui.enable = true;
