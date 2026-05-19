@@ -52,9 +52,9 @@ in
         "claude"
         "elgato-studio"
       ];
-      # masApps = {
-      #   "Paste - Endless Clipboard" = 967805235;
-      # };
+      masApps = {
+        "Paste - Endless Clipboard" = 967805235;
+      };
     };
 
   };
