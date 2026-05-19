@@ -43,7 +43,7 @@
       nixosSystem =
         system: hostname: modules:
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = system;
           modules = [
             ./hosts/nixos/${hostname}
             ./modules/nixos
@@ -72,7 +72,7 @@
       darwinSystem =
         system: hostname: modules:
         darwin.lib.darwinSystem {
-          inherit system;
+          system = system;
           modules = [
             {
               nixpkgs.config.allowBroken = true;
@@ -113,7 +113,6 @@
           specialArgs = {
             inherit inputs;
             inherit self;
-            inherit system;
           };
         };
     in

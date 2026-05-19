@@ -8,8 +8,8 @@
 with lib;
 
 let
-  isNixOS = pkgs.stdenv.isLinux;
-  isDarwin = pkgs.stdenv.isDarwin;
+  isNixOS = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
   # Common Nix settings for both NixOS and Darwin
