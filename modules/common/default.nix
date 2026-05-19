@@ -4,6 +4,7 @@
 
 {
   imports = [
+    ./nix-settings.nix
     ./basics.nix
     ./fonts.nix
     ./claude-code.nix

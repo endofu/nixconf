@@ -33,7 +33,10 @@
   ];
   
   # Simple GUI programs if this is a desktop
-  programs.firefox.enable = pkgs.stdenv.isLinux;
+  programs.firefox = {
+    enable = pkgs.stdenv.isLinux;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+  };
   
   # XDG directories
   xdg = {

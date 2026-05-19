@@ -29,6 +29,7 @@ in
 
       withNodeJs = true;
       withPython3 = true;
+      withRuby = false;
     };
 
     # Extra packages for neovim

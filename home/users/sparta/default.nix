@@ -62,6 +62,7 @@
     # Browser
     firefox = {
       enable = pkgs.stdenv.isLinux;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.default = {
         isDefault = true;
         settings = {
@@ -74,12 +75,11 @@
   # SSH configuration
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    enableDefaultConfig = false;
+    settings = {
       "github.com" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/github";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        IdentityFile = "${config.home.homeDirectory}/.ssh/github";
+        AddKeysToAgent = "yes";
       };
     };
   };

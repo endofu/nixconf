@@ -20,17 +20,5 @@ in
     environment.systemPackages = [
       pkgs.reattach-to-user-namespace
     ];
-
-    nix = {
-      settings = {
-        # auto-optimise-store = true;
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-        warn-dirty = false;
-        max-jobs = "auto";
-      };
-    };
   };
 }

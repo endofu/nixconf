@@ -43,7 +43,7 @@
     gh
     nixd
     nil
-    nixfmt-rfc-style
+    nixfmt
     tree
     eza
     lsd

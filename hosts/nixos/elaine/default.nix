@@ -164,9 +164,13 @@
   sops.secrets.anthropic_api_key = {
     owner = "elaine";
   };
+  sops.secrets.github_token = {
+    owner = "elaine";
+  };
   programs.bash.shellInit = ''
     export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
+    export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
   '';
 }

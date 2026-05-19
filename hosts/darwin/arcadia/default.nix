@@ -72,10 +72,14 @@
   sops.secrets.anthropic_api_key = {
     owner = "arcadia";
   };
+  sops.secrets.github_token = {
+    owner = "arcadia";
+  };
   programs.zsh.shellInit = ''
     export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export GOOGLE_GENERATIVE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
     export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
+    export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
   '';
 }

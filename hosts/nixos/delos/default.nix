@@ -134,6 +134,10 @@
   sops.secrets.anthropic_api_key = {
     owner = "delos";
   };
+  sops.secrets.github_token = {
+    owner = "delos";
+  };
   programs.bash.shellInit = ''
+    export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
   '';
 }

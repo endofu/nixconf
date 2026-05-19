@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     darwin = {
@@ -13,10 +13,13 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -71,7 +74,19 @@
         darwin.lib.darwinSystem {
           inherit system;
           modules = [
-            { nixpkgs.config.allowBroken = true; }
+            {
+              nixpkgs.config.allowBroken = true;
+              # nixpkgs.overlays = [
+              #   (final: prev: {
+              #     chromaprint = prev.chromaprint.overrideAttrs (old: {
+              #       doCheck = false;
+              #     });
+              #     kvazaar = prev.kvazaar.overrideAttrs (old: {
+              #       doCheck = false;
+              #     });
+              #   })
+              # ];
+            }
             # {
             #   nixpkgs.overlays = [
             #     (final: prev: {

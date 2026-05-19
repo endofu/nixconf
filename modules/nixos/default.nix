@@ -4,7 +4,6 @@
 
 {
   imports = [
-    ./nix-settings.nix
     ./desktop.nix
     ./server.nix
     ./networking.nix

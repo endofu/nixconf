@@ -13,9 +13,6 @@
 
   programs.home-manager.enable = true;
 
-  # Allow broken packages for Darwin
-  nixpkgs.config.allowBroken = true;
-
   # Common configuration for both NixOS and Darwin
   home.username = "arcadia";
   home.stateVersion = "24.11";
@@ -86,41 +83,28 @@
     enable = true;
     enableDefaultConfig = false;
 
-    matchBlocks = {
+    settings = {
       "github.com" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/github";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        IdentityFile = "${config.home.homeDirectory}/.ssh/github";
+        AddKeysToAgent = "yes";
       };
       "codeberg.org" = {
-        identityFile = "${config.home.homeDirectory}/.ssh/github";
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        IdentityFile = "${config.home.homeDirectory}/.ssh/github";
+        AddKeysToAgent = "yes";
       };
 
       "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        compression = false;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
+        ForwardAgent = "no";
+        AddKeysToAgent = "no";
+        Compression = "no";
+        ServerAliveInterval = "0";
+        ServerAliveCountMax = "3";
+        HashKnownHosts = "no";
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
       };
-
-      /*
-        "server" = {
-          hostname = "server.example.com";
-          user = "alice";
-          port = 22;
-          identityFile = "${config.home.homeDirectory}/.ssh/server";
-        };
-      */
     };
   };
 }

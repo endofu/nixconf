@@ -121,4 +121,16 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  sops.defaultSopsFile = ./../../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+
+  sops.age.keyFile = "/home/sparta/.config/sops/age/keys.txt";
+
+  sops.secrets.github_token = {
+    owner = "sparta";
+  };
+
+  programs.bash.shellInit = ''
+    export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
+  '';
 }

@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -13,7 +14,14 @@ in
 {
   # Common Nix settings for both NixOS and Darwin
   nix = {
-    settings = {
+    # On Darwin with Determinate Nix, we use extraOptions to avoid service conflicts
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      warn-dirty = false
+      max-jobs = auto
+    '';
+
+    settings = mkIf isNixOS {
       # auto-optimise-store = true;
       experimental-features = [
         "nix-command"
@@ -34,7 +42,7 @@ in
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E"
       ];
     };
-    gc =
+    gc = mkIf (isNixOS || config.nix.enable) (
       {
         automatic = true;
         options = "--delete-older-than 30d";
@@ -48,22 +56,11 @@ in
           {
             interval = {
               Day = 7;
-          };
-        }
-        else { }
-      );
+            };
+          }
+        else
+          { }
+      )
+    );
   };
-
-  system = mkMerge [
-  #  (mkIf isNixOS {
-  #     stateVersion = "24.11";
-  #  })
-
-    (mkIf isDarwin {
-      activationScripts.postActivation.text = ''
-        # Activate changes and rebuild
-        /run/current-system/sw/bin/darwin-rebuild build
-      '';
-    })
-  ];
 }
