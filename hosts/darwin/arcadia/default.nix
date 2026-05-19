@@ -49,6 +49,7 @@
     macos.enable = true;
     macos-apps.enable = true;
     podman.enable = true;
+    blender.enable = true;
     ghostty.enable = true;
     gemini.enable = true;
     mosquitto = {

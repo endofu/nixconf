@@ -14,6 +14,7 @@
     ./antigravity.nix
     ./ffmpeg.nix
     ./audacity.nix
+    ./blender.nix
     ./vnc.nix
     ./tailscale.nix
     ./mosquitto.nix
