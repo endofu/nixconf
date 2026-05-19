@@ -1,10 +1,10 @@
 # AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) and Gemini CLI when working with code in this repository.
 
 ## Task Tracking
 
-Use `TODO.md` for tracking tasks and improvements in this project. When identifying new issues or tasks, add them to the appropriate section in `TODO.md` rather than creating separate tracking mechanisms.
+Use `TODO.md` for tracking tasks and improvements in this project. When identifying new issues or tasks, add them to the appropriate section in `TODO.md`.
 
 ## Overview
 
@@ -17,21 +17,20 @@ This is a modular Nix configuration repository managing both NixOS and macOS (ni
 # Build and activate configuration (requires sudo)
 sudo nixos-rebuild switch --flake .#<hostname>
 
-# Available hosts: elaine, sparta
+# Available hosts: elaine, sparta, delos
 sudo nixos-rebuild switch --flake .#sparta
 ```
 
 ### Darwin (macOS) Systems
 ```bash
-# Build and activate configuration
-darwin-rebuild switch --flake .#<hostname>
-
 # Using nh (preferred)
 nh darwin switch ~/Code/nixconf#darwinConfigurations.<hostname>
 
 # Available hosts: arcadia, samos
-darwin-rebuild switch --flake .#samos
 nh darwin switch ~/Code/nixconf#darwinConfigurations.samos
+
+# Legacy way (not recommended for Determinate Nix setups)
+# darwin-rebuild switch --flake .#<hostname>
 ```
 
 ### Testing Changes
@@ -40,142 +39,62 @@ nh darwin switch ~/Code/nixconf#darwinConfigurations.samos
 nixos-rebuild build --flake .#<hostname>
 
 # Build without activating (Darwin)
-darwin-rebuild build --flake .#<hostname>
+nh darwin build ~/Code/nixconf#darwinConfigurations.<hostname>
 ```
 
 ## Repository Architecture
-
-The repository is structured around three key concepts that work together:
 
 ### 1. Hosts (Machine-Specific Configuration)
 Located in `hosts/{nixos,darwin}/<hostname>/default.nix`. Each host configuration:
 - Defines the specific machine (hostname, platform, hardware)
 - Enables/disables modules via the `modules.<name>.enable` pattern
 - Assigns users to the machine
-- Imports hardware configuration (NixOS only)
 - Manages secrets via sops-nix
-
-Example from `hosts/darwin/samos/default.nix:38-53`:
-```nix
-modules = {
-  basics.enable = true;
-  claude-code.enable = true;
-  fonts.enable = true;
-  karabiner.enable = true;
-  homebrew.enable = true;
-  # ... more modules
-}
-```
+- On Darwin: `nix.enable = false` is set to maintain compatibility with Determinate Nix
 
 ### 2. Modules (Reusable System Configuration)
-Located in `modules/{common,darwin,nixos}/`. Modules provide system-level functionality:
-- **Common modules** (`modules/common/`): Cross-platform (basics, fonts, claude-code, tailscale, ffmpeg, vnc, antigravity)
-- **Darwin modules** (`modules/darwin/`): macOS-specific (homebrew, macos settings, karabiner, podman, ghostty, llm)
-- **NixOS modules** (`modules/nixos/`): Linux-specific (desktop, server, networking, llm, teamviewer)
+Located in `modules/{common,darwin,nixos}/`.
+- **Common modules** (`modules/common/`): Cross-platform settings (nix-settings, basics, fonts, claude-code, etc.)
+- **Darwin modules** (`modules/darwin/`): macOS-specific (homebrew, macos settings, etc.)
+- **NixOS modules** (`modules/nixos/`): Linux-specific (desktop, server, etc.)
 
-All modules follow this pattern:
-```nix
-options.modules.<name> = {
-  enable = mkEnableOption "<description>";
-  # Additional options...
-};
-
-config = mkIf cfg.enable {
-  # Configuration when enabled
-};
-```
-
-Module imports are centralized in `modules/{common,darwin,nixos}/default.nix`.
+All modules follow the `options.modules.<name>.enable` pattern.
 
 ### 3. Home-Manager (User-Level Configuration)
 Located in `home/`:
-- **Profiles** (`home/profiles/`): Composable sets of functionality (developer, desktop, darwin, nixos, minimal)
-- **Users** (`home/users/<username>/default.nix`): Per-user configuration that imports profiles
-- **Modules** (`home/modules/{shell,editors,desktop,darwin,nixos}/`): User-space modules enabled via `modules.<category>.<name>.enable`
-
-User configurations import profiles to compose functionality:
-```nix
-imports = [
-  ../../profiles/developer.nix
-  ../../profiles/desktop.nix
-  ../../profiles/darwin.nix
-];
-```
-
-## Configuration Flow
-
-1. `flake.nix` defines system configurations using helpers (`nixosSystem`, `darwinSystem`)
-2. Each helper automatically imports:
-   - Host-specific config from `hosts/{nixos,darwin}/<hostname>/`
-   - Platform modules from `modules/{nixos,darwin}/`
-   - Common modules from `modules/common/`
-   - home-manager with user configs from `home/users/<username>/`
-3. Host configurations enable specific modules
-4. User configurations import profiles and enable user-space modules
-
-## Module System Patterns
-
-### System Modules (in `modules/`)
-- Use `config.modules.<name>.enable` to toggle functionality
-- Install packages to `environment.systemPackages`
-- Configure system-level services
-- Can have nested options (e.g., `modules.desktop.windowManager`, `modules.server.sshd`)
-
-### Home-Manager Modules (in `home/modules/`)
-- Use `modules.<category>.<name>.enable` pattern (e.g., `modules.shell.zsh.enable`)
-- Install packages to `home.packages`
-- Configure user-level programs and services
-- Categories: shell, editors, desktop, darwin, nixos
-
-## Adding New Functionality
-
-### Adding a New System Module
-1. Create `modules/{common,darwin,nixos}/<name>.nix`
-2. Add import to respective `modules/{common,darwin,nixos}/default.nix`
-3. Enable in host configuration: `modules.<name>.enable = true;`
-
-### Adding a New Host
-1. Create `hosts/{nixos,darwin}/<hostname>/default.nix`
-2. For NixOS, include `hardware-configuration.nix` (generated by installer)
-3. Add to `flake.nix` in appropriate configurations section
-4. Enable desired modules via `modules.<name>.enable`
-
-### Adding a New User
-1. Create `home/users/<username>/default.nix`
-2. Import desired profiles
-3. Configure per-user settings (git, ssh, etc.)
-4. Add to host configuration's `home-manager.users`
+- **Profiles** (`home/profiles/`): Composable sets of functionality (developer, desktop, etc.)
+- **Users** (`home/users/<username>/default.nix`): Per-user configuration importing profiles
+- **Modules** (`home/modules/`): User-space modules (shell, editors, etc.)
 
 ## Secrets Management
 
 Secrets are managed via sops-nix:
 - Secret file: `secrets/secrets.yaml` (encrypted)
-- AGE keys: `~/.config/sops/age/keys.txt` (Darwin) or similar (NixOS)
-- Secrets declared in host config: `sops.secrets.<name> = { owner = "..."; };`
-- Access decrypted secrets: `/run/secrets/<name>`
+- AGE keys: `~/.config/sops/age/keys.txt`
+- Secrets must have an `owner` set to the primary user to be accessible in user shells.
 
-Example from `hosts/darwin/samos/default.nix:64-75`:
+### GitHub Token & Rate Limiting
+To avoid GitHub API rate limits during flake operations, a `github_token` is stored in sops and automatically exported as `GITHUB_TOKEN` in host shell initializations.
+
+Example from `hosts/darwin/samos/default.nix`:
 ```nix
-sops.secrets.gemini_api_key = { owner = "samos"; };
+sops.secrets.github_token = { owner = "samos"; };
 programs.zsh.shellInit = ''
-  export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+  export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
 '';
 ```
 
 ## Key Flake Inputs
 
 - `nixpkgs`: Primary package source (nixpkgs-unstable)
-- `nixpkgs-2405`, `nixpkgs-2411`: Pinned releases for specific packages
 - `darwin`: nix-darwin framework for macOS
-- `home-manager`: User environment management
-- `sops-nix`: Secrets management
+- `home-manager`: User environment management (follows `nixpkgs`)
+- `sops-nix`: Secrets management (follows `nixpkgs`)
 
 ## Important Files
 
 - `flake.nix`: Entry point defining all system configurations
 - `flake.lock`: Pinned input versions
-- `.sops.yaml`: SOPS configuration for secrets
-- `hosts/<platform>/<hostname>/default.nix`: Per-machine configuration
-- `modules/<platform>/default.nix`: Module import aggregators
-- `home/users/<username>/default.nix`: Per-user home-manager configuration
+- `modules/common/nix-settings.nix`: Shared Nix daemon settings and experimental features
+- `hosts/`: Per-machine configuration
 - `TODO.md`: Task tracking and improvement backlog
