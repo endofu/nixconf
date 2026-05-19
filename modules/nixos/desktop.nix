@@ -36,8 +36,7 @@ in
 
       displayManager.gdm.enable = cfg.windowManager == "gnome";
       desktopManager.gnome.enable = cfg.windowManager == "gnome";
-
-      
+	
       xserver = {
         enable = true;
 
@@ -45,7 +44,7 @@ in
           layout = "us";
           variant = "";
         };
-
+        
 	displayManager.lightdm.enable = cfg.windowManager == "xfce";
         desktopManager.xfce.enable = cfg.windowManager == "xfce";
 
@@ -94,6 +93,7 @@ in
         alsa.support32Bit = true;
         pulse.enable = true;
       };
+      pulseaudio.enable = false;
       blueman.enable = true;
     };
 

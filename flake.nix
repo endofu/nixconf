@@ -107,6 +107,7 @@
       nixosConfigurations = {
         elaine = nixosSystem "x86_64-linux" "elaine" [ ];
         sparta = nixosSystem "x86_64-linux" "sparta" [ ];
+        delos = nixosSystem "x86_64-linux" "delos" [ ];
       };
 
       # Darwin configurations
