@@ -42,7 +42,7 @@ in
         # "anydesk"
         # "displaylink"
         "figma"
-        "linear-linear"
+        "linear"
         "balenaetcher"
         "vlc"
         "antigravity"
