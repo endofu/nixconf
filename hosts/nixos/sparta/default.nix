@@ -114,7 +114,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xfce.xfce4-pulseaudio-plugin
+    xfce4-pulseaudio-plugin
     autorandr
   ];
 
