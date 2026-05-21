@@ -26,6 +26,9 @@
     teamviewer.enable = false;
     llm.enable = false;
     tailscale.enable = true;
+    opencode.enable = true;
+    gemini.enable = true;
+    ghostty.enable = true;
 
     mosquitto = {
       enable = true;
