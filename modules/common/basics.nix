@@ -30,6 +30,7 @@ in
       pnpm
       age
       flatbuffers
+      tea
       #      gnumake
       #      gcc
       #      libgcc
