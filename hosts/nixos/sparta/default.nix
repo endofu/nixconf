@@ -31,8 +31,8 @@
     ghostty.enable = true;
 
     mosquitto = {
-      enable = true;
-      mqttui.enable = true;
+      enable = false;
+      mqttui.enable = false;
     };
 
     server = {
@@ -47,24 +47,19 @@
         nginx = false;
         postgresql = false;
         docker = false;
-        podman = true;
+        podman = false;
       };
     };
     networking = {
       enable = true;
-      enableWireless = true;
+      enableWireless = false;
       enableVPN = false;
       firewall = {
         enable = true;
         allowedTCPPorts = [
           22
-          80
-          8080
-          443
-          5173
-          5174
         ];
-        allowedUDPPorts = [ 8001 ];
+        allowedUDPPorts = [ ];
       };
     };
   };
