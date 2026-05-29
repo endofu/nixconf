@@ -29,6 +29,7 @@
     opencode.enable = true;
     gemini.enable = true;
     ghostty.enable = true;
+    perforce.enable = true;
 
     mosquitto = {
       enable = false;

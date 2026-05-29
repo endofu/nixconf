@@ -11,5 +11,6 @@
     ./teamviewer.nix
     ./mosquitto.nix
     ./ghostty.nix
+    ./perforce.nix
   ];
 }
