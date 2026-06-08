@@ -14,5 +14,6 @@
     ./llm.nix
     ./codex.nix
     ./mosquitto.nix
+    ./teams.nix
   ];
 }
