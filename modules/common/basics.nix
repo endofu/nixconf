@@ -31,6 +31,7 @@ in
       age
       flatbuffers
       tea
+      mqttui
       #      gnumake
       #      gcc
       #      libgcc

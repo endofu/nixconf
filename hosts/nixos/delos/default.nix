@@ -68,11 +68,10 @@
           22
           80
           8080
+          8082
           443
-          5173
-          5174
         ];
-        allowedUDPPorts = [ 8001 ];
+        allowedUDPPorts = [ 1700 ];
       };
     };
   };
