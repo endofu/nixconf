@@ -53,6 +53,7 @@
     blender.enable = true;
     ghostty.enable = true;
     gemini.enable = true;
+    antigravity.cli.enable = true;
     mosquitto = {
       enable = false;
       mqttui.enable = true;

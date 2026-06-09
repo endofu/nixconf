@@ -12,14 +12,21 @@ let
 in
 {
   options.modules.antigravity = {
-    enable = mkEnableOption "antigravity configuration";
+    enable = mkEnableOption "antigravity fhs application";
+    cli.enable = mkEnableOption "antigravity-cli";
   };
 
-  config = mkIf cfg.enable {
-
-    environment.systemPackages = with pkgs; [
-      antigravity-fhs
-      google-chrome
-    ];
-  };
+  config = mkMerge [
+    (mkIf cfg.enable {
+      environment.systemPackages = with pkgs; [
+        antigravity-fhs
+        google-chrome
+      ];
+    })
+    (mkIf cfg.cli.enable {
+      environment.systemPackages = with pkgs; [
+        antigravity-cli
+      ];
+    })
+  ];
 }

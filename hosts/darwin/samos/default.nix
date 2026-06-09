@@ -46,6 +46,7 @@
     codex-cli.enable = true;
     opencode.enable = true;
     gemini.enable = true;
+    antigravity.cli.enable = true;
     mosquitto = {
       enable = true;
       mqttui.enable = true;
