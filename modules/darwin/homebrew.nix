@@ -27,6 +27,7 @@ in
         autoUpdate = true;
         upgrade = true;
         cleanup = "zap";
+        extraFlags = [ "--force" ];
       };
       # taps = [ "sst/tap" ];
       brews = [
