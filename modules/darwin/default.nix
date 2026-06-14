@@ -15,5 +15,6 @@
     ./codex.nix
     ./mosquitto.nix
     ./teams.nix
+    ./resilio.nix
   ];
 }
