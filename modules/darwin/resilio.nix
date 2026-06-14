@@ -11,6 +11,7 @@ let
   cfg = config.modules.resilio;
   user = config.system.primaryUser;
   storagePath = "/Users/${user}/.rslsync";
+  logDir = "/Users/${user}/Library/Logs";
   
   syncConfig = pkgs.writeText "sync.conf" (builtins.toJSON {
     device_name = cfg.deviceName;
@@ -32,10 +33,14 @@ in
       serviceConfig = {
         KeepAlive = true;
         RunAtLoad = true;
-        StandardOutPath = "/tmp/resilio-sync.out.log";
-        StandardErrorPath = "/tmp/resilio-sync.err.log";
+        StandardOutPath = "${logDir}/resilio-sync.out.log";
+        StandardErrorPath = "${logDir}/resilio-sync.err.log";
       };
     };
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "resilio-sync"
+    ];
 
     # Ensure storage path exists
     system.activationScripts.extraActivation.text = ''
