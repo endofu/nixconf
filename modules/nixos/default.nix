@@ -12,5 +12,6 @@
     ./mosquitto.nix
     ./ghostty.nix
     ./perforce.nix
+    ./resilio.nix
   ];
 }
