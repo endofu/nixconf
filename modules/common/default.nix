@@ -18,5 +18,6 @@
     ./vnc.nix
     ./tailscale.nix
     ./mosquitto.nix
+    ./resilio.nix
   ];
 }
