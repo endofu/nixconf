@@ -12,6 +12,7 @@
 
   # System configuration
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   # Set Git commit hash for darwin-version
   # system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -43,6 +44,7 @@
     fonts.enable = true;
     tailscale.enable = true;
     teams.enable = true;
+    resilio.enable = true;
 
     karabiner.enable = true;
     darwin-basics.enable = true;
