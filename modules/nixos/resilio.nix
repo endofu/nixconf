@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -20,11 +19,8 @@ in
       httpListenAddr = cfg.webUI.listenAddr;
       httpListenPort = cfg.webUI.port;
       storagePath = "/home/arcadia/.rslsync";
+      user = "arcadia";
+      group = "users";
     };
-
-    # Ensure rslsync package is available
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "resilio-sync"
-    ];
   };
 }
