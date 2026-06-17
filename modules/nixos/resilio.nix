@@ -18,9 +18,19 @@ in
       enableWebUI = cfg.webUI.enable;
       httpListenAddr = cfg.webUI.listenAddr;
       httpListenPort = cfg.webUI.port;
-      storagePath = "/home/arcadia/.rslsync";
-      user = "arcadia";
-      group = "users";
+      httpLogin = cfg.webUI.login;
+      httpPass = cfg.webUI.password;
+      storagePath = if cfg.storagePath != null then cfg.storagePath else "/var/lib/resilio-sync";
     };
+
+    systemd.services.resilio.serviceConfig = mkIf (cfg.user != null) {
+      User = mkForce cfg.user;
+      Group = mkForce (if cfg.group != null then cfg.group else "users");
+    };
+
+    systemd.tmpfiles.rules = mkIf (cfg.user != null) [
+      "d '${if cfg.storagePath != null then cfg.storagePath else "/var/lib/resilio-sync"}' 0700 ${cfg.user} ${if cfg.group != null then cfg.group else "users"} - -"
+      "Z '${if cfg.storagePath != null then cfg.storagePath else "/var/lib/resilio-sync"}' 0700 ${cfg.user} ${if cfg.group != null then cfg.group else "users"} - -"
+    ];
   };
 }

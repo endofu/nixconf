@@ -43,7 +43,16 @@
     opencode.enable = true;
     gemini.enable = true;
     ghostty.enable = true;
-    # resilio.enable = true;
+    resilio = {
+      enable = true;
+      user = "delos";
+      storagePath = "/home/delos/.rslsync";
+      webUI = {
+        enable = true;
+        listenAddr = "0.0.0.0";
+        port = 8888;
+      };
+    };
     audacity.enable = false;
 
     server = {
@@ -73,6 +82,7 @@
           8080
           8082
           443
+          8888
         ];
         allowedUDPPorts = [ 1700 ];
       };

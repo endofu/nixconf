@@ -23,6 +23,21 @@ in
       default = 0;
       description = "Listening port for Resilio Sync (0 for random)";
     };
+    user = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "User to run Resilio Sync as";
+    };
+    group = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Group to run Resilio Sync as";
+    };
+    storagePath = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Storage path for Resilio Sync metadata";
+    };
     webUI = {
       enable = mkOption {
         type = types.bool;
@@ -38,6 +53,16 @@ in
         type = types.int;
         default = 8888;
         description = "Port for the Web UI";
+      };
+      login = mkOption {
+        type = types.str;
+        default = "resiliowebui";
+        description = "Username for Web UI login";
+      };
+      password = mkOption {
+        type = types.str;
+        default = "Providing5-Exclude0-Unwritten3-Mustiness5-Salutary5";
+        description = "Password for Web UI login";
       };
     };
   };

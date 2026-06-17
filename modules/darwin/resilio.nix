@@ -9,8 +9,8 @@ with lib;
 
 let
   cfg = config.modules.resilio;
-  user = config.system.primaryUser;
-  storagePath = "/Users/${user}/.rslsync";
+  user = if cfg.user != null then cfg.user else config.system.primaryUser;
+  storagePath = if cfg.storagePath != null then cfg.storagePath else "/Users/${user}/.rslsync";
   logDir = "/Users/${user}/Library/Logs";
   
   syncConfig = pkgs.writeText "sync.conf" (builtins.toJSON {
