@@ -41,6 +41,7 @@
     ffmpeg.enable = false;
     fonts.enable = true;
     tailscale.enable = true;
+    resilio.enable = true;
     llm.enable = true;
     codex.enable = true;
     codex-cli.enable = true;
