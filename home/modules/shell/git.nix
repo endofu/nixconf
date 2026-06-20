@@ -167,7 +167,7 @@ in
       enable = true;
       git = {
         enable = true;
-        diffToolMode = true;
+        mode = "difftool";
       };
       options = {
         display = "inline";
