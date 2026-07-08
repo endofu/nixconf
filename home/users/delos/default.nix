@@ -69,7 +69,7 @@
   home.packages = with pkgs; [
     # Communication tools
     #     slack
-    discord
+    # discord
 
     # Development tools
     gnumake

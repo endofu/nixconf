@@ -17,7 +17,7 @@
     utilities.enable = true;
     git.enable = true;
     tmux.enable = true;
-    wezterm.enable = true;
+    wezterm.enable = false;
     lazygit.enable = true;
   };
 
