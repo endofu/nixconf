@@ -56,6 +56,7 @@
     ghostty.enable = true;
     gemini.enable = true;
     antigravity.cli.enable = true;
+    herdr.enable = true;
     mosquitto = {
       enable = false;
       mqttui.enable = true;
