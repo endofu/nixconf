@@ -82,14 +82,18 @@ in
       enable = true;
       enableZshIntegration = config.programs.zsh.enable;
       enableBashIntegration = config.programs.bash.enable;
-      fileWidgetCommand = "fd --type f";
-      fileWidgetOptions = [
-        "--preview 'bat --style=full  --theme=DarkNeon --color=always --line-range :500 {}'"
-      ];
-      changeDirWidgetCommand = "fd --type d";
-      changeDirWidgetOptions = [
-        "--preview 'tree -C {} | head -200'"
-      ];
+      fileWidget = {
+        command = "fd --type f";
+        options = [
+          "--preview 'bat --style=full  --theme=DarkNeon --color=always --line-range :500 {}'"
+        ];
+      };
+      changeDirWidget = {
+        command = "fd --type d";
+        options = [
+          "--preview 'tree -C {} | head -200'"
+        ];
+      };
       tmux = {
         enableShellIntegration = true;
       };
