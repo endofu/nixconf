@@ -57,6 +57,7 @@
     gemini.enable = true;
     antigravity.cli.enable = true;
     herdr.enable = true;
+    linear.enable = true;
     mosquitto = {
       enable = false;
       mqttui.enable = true;

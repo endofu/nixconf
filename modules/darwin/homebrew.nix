@@ -43,14 +43,13 @@ in
         "anydesk"
         # "displaylink"
         "figma"
-        "linear"
         "balenaetcher"
         "vlc"
         "antigravity"
         # "raspberry-pi-imager"
         # Dev tools
         "syntax-highlight"
-        "claude"
+        # "claude"
         "elgato-studio"
       ];
       masApps = {

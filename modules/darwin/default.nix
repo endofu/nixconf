@@ -16,5 +16,6 @@
     ./mosquitto.nix
     ./teams.nix
     ./resilio.nix
+    ./linear.nix
   ];
 }
