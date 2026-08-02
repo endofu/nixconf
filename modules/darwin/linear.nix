@@ -26,7 +26,7 @@ in
         }
       ];
       brews = [
-        "linear"
+        "schpet/tap/linear"
       ];
     };
   };
