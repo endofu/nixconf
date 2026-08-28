@@ -41,6 +41,7 @@ in
         "ticktick"
         "teamviewer"
         "anydesk"
+        "rustdesk"
         # "displaylink"
         "figma"
         "balenaetcher"
