@@ -27,9 +27,10 @@ in
             filterMode = "fuzzy";
           };
           git = {
-            pagers = [
+            diffRenderers = [
               {
-                externalDiffCommand = "difft --display=inline --color=always";
+                command = "difft --display=inline --color=always";
+                type = "extDiff";
               }
             ];
             parseEmoji = true;
