@@ -62,6 +62,7 @@
     macos-apps.enable = true;
     podman.enable = true;
     ghostty.enable = true;
+    infra.enable = true;
   };
 
   home-manager.users = {

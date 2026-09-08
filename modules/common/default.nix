@@ -20,5 +20,6 @@
     ./mosquitto.nix
     ./resilio.nix
     ./herdr.nix
+    ./infra.nix
   ];
 }
