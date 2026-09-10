@@ -17,6 +17,7 @@
     ./blender.nix
     ./vnc.nix
     ./tailscale.nix
+    ./netbird.nix
     ./mosquitto.nix
     ./resilio.nix
     ./herdr.nix
