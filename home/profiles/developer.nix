@@ -19,6 +19,7 @@
     tmux.enable = true;
     wezterm.enable = false;
     lazygit.enable = true;
+    direnv.enable = true;
   };
 
   # Enable editor modules
@@ -68,12 +69,6 @@
     cacheHome = "${config.home.homeDirectory}/.cache";
   };
 
-  # Configure direnv
-  #   programs.direnv = {
-  #     enable = true;
-  #     nix-direnv.enable = true;
-  #   };
-  #
   # Configure starship prompt
   programs.starship = {
     enable = true;
