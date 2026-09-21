@@ -23,6 +23,8 @@ in
             showBottomLine = true;
             showPanelJumps = false;
             nerdFontsVersion = "3";
+            timeFormat = "2006-01-02 15:04";
+            shortTimeFormat = "15:04";
             showDivergenceFromBaseBranch = "arrowAndNumber";
             filterMode = "fuzzy";
           };
