@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
 
     environment.systemPackages = with pkgs; [
-      gemini-cli-bin
       google-chrome
     ];
   };
