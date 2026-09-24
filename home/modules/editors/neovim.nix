@@ -27,10 +27,13 @@ in
       enable = true;
       defaultEditor = cfg.defaultEditor;
 
-      withNodeJs = true;
-      withPython3 = true;
+      withNodeJs = false;
+      withPython3 = false;
       withRuby = false;
     };
+
+    # Prevent home-manager from generating init.lua which overwrites LazyVim's entrypoint
+    xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
     # Extra packages for neovim
     home.packages = with pkgs; [
@@ -42,14 +45,28 @@ in
       ripgrep
       fd
 
-      # For telescope
+      # LSPs and linters configured in LazyVim
+      typos-lsp
+      statix
+      nixd
+      nixpkgs-fmt
+
+      # For telescope (use default stdenv compiler which is clang on mac, gcc on linux)
+    ] ++ lib.optionals pkgs.stdenv.isLinux [
       gcc
+    ] ++ [
       gnumake
     ];
 
-    home.file.".config/nvim" = {
-      source = ../../dotfiles/LazyVim;
-      recursive = true;
-    };
+    # Link LazyVim out-of-store so Lazy can write to lazy-lock.json
+    home.activation.linkLazyVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -L ${config.home.homeDirectory}/.config/nvim ] && [ -d ${config.home.homeDirectory}/.config/nvim ]; then
+        if [ -f ${config.home.homeDirectory}/.config/nvim/lazy-lock.json ]; then
+          $DRY_RUN_CMD cp -f ${config.home.homeDirectory}/.config/nvim/lazy-lock.json ${config.home.homeDirectory}/Code/nixconf/home/dotfiles/LazyVim/lazy-lock.json
+        fi
+        $DRY_RUN_CMD rm -rf ${config.home.homeDirectory}/.config/nvim
+      fi
+      $DRY_RUN_CMD ln -sfn ${config.home.homeDirectory}/Code/nixconf/home/dotfiles/LazyVim ${config.home.homeDirectory}/.config/nvim
+    '';
   };
 }
