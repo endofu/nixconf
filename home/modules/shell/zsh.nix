@@ -114,5 +114,8 @@ in
         exec zsh
       fi
     '';
+    # Link system terminfo to ~/.terminfo so that macOS /bin/zsh and curses
+    # can find modern terminal definitions (like xterm-ghostty) on startup over SSH
+    home.file.".terminfo".source = config.lib.file.mkOutOfStoreSymlink "/run/current-system/sw/share/terminfo";
   };
 }
