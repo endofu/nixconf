@@ -19,7 +19,7 @@ in
   config = mkMerge [
     (mkIf cfg.enable {
       environment.systemPackages = with pkgs; [
-        antigravity-fhs
+        antigravity-ide-fhs
         google-chrome
       ];
     })
