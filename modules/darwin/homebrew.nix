@@ -37,10 +37,6 @@ in
       casks = [
         # Basic apps
         "zen"
-        # "dropbox"
-        "ticktick"
-        "teamviewer"
-        "anydesk"
         "rustdesk"
         # "displaylink"
         "figma"
@@ -48,9 +44,7 @@ in
         "vlc"
         "antigravity"
         # "raspberry-pi-imager"
-        # Dev tools
         "syntax-highlight"
-        # "claude"
         "elgato-studio"
       ];
       masApps = {

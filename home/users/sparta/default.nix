@@ -61,7 +61,7 @@
   programs = {
     # Browser
     firefox = {
-      enable = pkgs.stdenv.isLinux;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
       configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.default = {
         isDefault = true;

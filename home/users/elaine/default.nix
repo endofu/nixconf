@@ -14,7 +14,7 @@
   # Common configuration for both NixOS and Darwin
   home.username = "elaine";
   home.stateVersion = "24.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/elaine" else "/home/elaine";
+  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/elaine" else "/home/elaine";
 
   # Enable specific shell modules
   modules.shell = {
@@ -81,7 +81,7 @@
   programs = {
     # Browser
     firefox = {
-      enable = pkgs.stdenv.isLinux;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
       configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.default = {
         isDefault = true;

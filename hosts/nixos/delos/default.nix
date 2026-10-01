@@ -41,7 +41,6 @@
     vnc.enable = false;
     tailscale.enable = true;
     opencode.enable = true;
-    gemini.enable = true;
     ghostty.enable = true;
     resilio = {
       enable = true;

@@ -16,7 +16,7 @@
   # Common configuration for both NixOS and Darwin
   home.username = "samos";
   home.stateVersion = "25.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/samos" else "/home/samos";
+  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/samos" else "/home/samos";
 
   # Enable specific shell modules
   modules.shell = {

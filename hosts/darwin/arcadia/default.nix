@@ -54,7 +54,6 @@
     podman.enable = true;
     blender.enable = true;
     ghostty.enable = true;
-    gemini.enable = true;
     antigravity.cli.enable = true;
     herdr.enable = true;
     linear.enable = true;
@@ -83,10 +82,10 @@
     owner = "arcadia";
   };
   programs.zsh.shellInit = ''
-    export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
-    export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
-    export GOOGLE_GENERATIVE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
-    export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
+    # export GOOGLE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    # export GEMINI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    # export GOOGLE_GENERATIVE_AI_API_KEY="$(cat /run/secrets/gemini_api_key)"
+    # export ANTHROPIC_API_KEY="$(cat /run/secrets/anthropic_api_key)"
     export GITHUB_TOKEN="$(cat /run/secrets/github_token)"
   '';
 }

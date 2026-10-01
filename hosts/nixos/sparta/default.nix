@@ -27,7 +27,6 @@
     llm.enable = false;
     tailscale.enable = true;
     opencode.enable = true;
-    gemini.enable = true;
     ghostty.enable = true;
     perforce.enable = true;
 

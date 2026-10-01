@@ -48,7 +48,7 @@ in
   };
 
   config = mkMerge [
-    (mkIf (cfg.enable && pkgs.stdenv.isLinux) {
+    (mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isLinux) {
       # NixOS-specific networking configuration
       networking = {
         networkmanager = {
@@ -93,7 +93,7 @@ in
         ];
     })
 
-    (mkIf (cfg.enable && pkgs.stdenv.isDarwin) {
+    (mkIf (cfg.enable && pkgs.stdenv.hostPlatform.isDarwin) {
       # Darwin-specific networking configuration
       # this is an error: networking.dns = [ "1.1.1.1" "8.8.8.8" ];
 

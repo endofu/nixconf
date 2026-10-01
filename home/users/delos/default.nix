@@ -15,7 +15,7 @@
   # Common configuration for both NixOS and Darwin
   home.username = "delos";
   home.stateVersion = "25.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/delos" else "/home/delos";
+  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/delos" else "/home/delos";
 
   # Enable specific shell modules
   modules.shell = {

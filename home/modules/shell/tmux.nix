@@ -150,7 +150,7 @@ in
         set-option -sa terminal-overrides ',*:RGB'
 
         # Fix default-command on macOS to use configured shell
-        ${lib.optionalString (pkgs.stdenv.isDarwin && cfg.shell != "") ''
+        ${lib.optionalString (pkgs.stdenv.hostPlatform.isDarwin && cfg.shell != "") ''
           set -g default-command "reattach-to-user-namespace -l ${cfg.shell}"
         ''}
       '';

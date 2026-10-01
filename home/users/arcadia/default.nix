@@ -14,48 +14,51 @@
   programs.home-manager.enable = true;
 
   # Common configuration for both NixOS and Darwin
-  home.username = "arcadia";
-  home.stateVersion = "24.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/arcadia" else "/home/arcadia";
-
-  # Enable specific shell modules
-  modules.shell = {
-    git = {
-      enable = true;
-      userName = "endofu";
-      userEmail = "endofu@gmail.com";
-      /*
-        signing = {
-          enable = true;
-          key = "XXXXXXXXXXXXXXXX";
-        };
-      */
-    };
-
-    zsh = {
-      enable = true;
-      defaultShell = true;
-    };
-
-    tmux = {
-      enable = true;
-      shell = "${pkgs.zsh}/bin/zsh";
-    };
+  home = {
+    username = "arcadia";
+    stateVersion = "24.11";
+    homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/arcadia" else "/home/arcadia";
   };
+  # Enable specific shell modules
+  modules = {
+    shell = {
+      git = {
+        enable = true;
+        userName = "endofu";
+        userEmail = "endofu@gmail.com";
+        /*
+          signing = {
+            enable = true;
+            key = "XXXXXXXXXXXXXXXX";
+          };
+        */
+      };
 
-  # Configure editors
-  modules.editors = {
-    neovim = {
-      enable = true;
-      defaultEditor = true;
+      zsh = {
+        enable = true;
+        defaultShell = true;
+      };
+
+      tmux = {
+        enable = true;
+        shell = "${pkgs.zsh}/bin/zsh";
+      };
     };
 
-    zed = {
-      enable = true;
-    };
+    # Configure editors
+    editors = {
+      neovim = {
+        enable = true;
+        defaultEditor = true;
+      };
 
-    vscode = {
-      enable = false;
+      zed = {
+        enable = true;
+      };
+
+      vscode = {
+        enable = false;
+      };
     };
   };
 

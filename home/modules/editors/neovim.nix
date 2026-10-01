@@ -36,30 +36,34 @@ in
     xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
 
     # Extra packages for neovim
-    home.packages = with pkgs; [
-      # Core dependencies
-      python314
-      rustc
-      cargo
-      go
-      ripgrep
-      fd
+    home.packages =
+      with pkgs;
+      [
+        # Core dependencies
+        python314
+        rustc
+        cargo
+        go
+        ripgrep
+        fd
 
-      # LSPs and linters configured in LazyVim
-      typos-lsp
-      statix
-      nixd
-      nixpkgs-fmt
+        # LSPs and linters configured in LazyVim
+        typos-lsp
+        statix
+        nixd
+        nixpkgs-fmt
 
-      # For telescope (use default stdenv compiler which is clang on mac, gcc on linux)
-    ] ++ lib.optionals pkgs.stdenv.isLinux [
-      gcc
-    ] ++ [
-      gnumake
-    ];
+        # For telescope (use default stdenv compiler which is clang on mac, gcc on linux)
+      ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+        gcc
+      ]
+      ++ [
+        gnumake
+      ];
 
     # Link LazyVim out-of-store so Lazy can write to lazy-lock.json
-    home.activation.linkLazyVim = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.linkLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ ! -L ${config.home.homeDirectory}/.config/nvim ] && [ -d ${config.home.homeDirectory}/.config/nvim ]; then
         if [ -f ${config.home.homeDirectory}/.config/nvim/lazy-lock.json ]; then
           $DRY_RUN_CMD cp -f ${config.home.homeDirectory}/.config/nvim/lazy-lock.json ${config.home.homeDirectory}/Code/nixconf/home/dotfiles/LazyVim/lazy-lock.json

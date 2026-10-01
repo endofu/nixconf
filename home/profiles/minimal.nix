@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ../modules/shell
   ];
-  
+
   # Enable core shell modules
   modules.shell = {
     zsh.enable = true;
@@ -22,7 +27,7 @@
     git.enable = true;
     tmux.enable = false;
   };
-  
+
   # Minimal set of packages
   home.packages = with pkgs; [
     curl
@@ -31,13 +36,13 @@
     unzip
     htop
   ];
-  
+
   # Simple GUI programs if this is a desktop
   programs.firefox = {
-    enable = pkgs.stdenv.isLinux;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
   };
-  
+
   # XDG directories
   xdg = {
     enable = true;
