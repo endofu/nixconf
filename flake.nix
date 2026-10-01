@@ -25,6 +25,11 @@
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -127,6 +132,9 @@
         elaine = nixosSystem "x86_64-linux" "elaine" [ ];
         sparta = nixosSystem "x86_64-linux" "sparta" [ ];
         delos = nixosSystem "x86_64-linux" "delos" [ ];
+        elysium = nixosSystem "x86_64-linux" "elysium" [
+          inputs.nixos-hardware.nixosModules.apple-t2
+        ];
       };
 
       # Darwin configurations
