@@ -15,7 +15,8 @@
   # Common configuration for both NixOS and Darwin
   home.username = "elysium";
   home.stateVersion = "25.11";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/elysium" else "/home/elysium";
+  home.homeDirectory =
+    if pkgs.stdenv.hostPlatform.isDarwin then "/Users/elysium" else "/home/elysium";
 
   # Enable specific shell modules
   modules.shell = {
