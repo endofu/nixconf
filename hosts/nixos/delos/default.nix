@@ -1,7 +1,7 @@
 {
-  config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -104,6 +104,31 @@
       "podman" # TODO: move this to module
     ];
   };
+
+  services.xserver.displayManager.gdm.autoSuspend = false;
+
+  # 1. Completely disable systemd sleep/suspend/hibernation targets
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
+  # 2. Tell systemd-logind not to suspend on idle or lid close
+  # services.logind.settings = {
+  #   IdleAction = "ignore";
+  # };
+
+  # 3. Disable GDM's specific login screen power-saving suspend
+  programs.dconf.profiles.gdm.databases = [
+    {
+      settings = {
+        "org/gnome/settings-daemon/plugins/power" = {
+          sleep-inactive-ac-type = "nothing";
+          sleep-inactive-ac-timeout = lib.gvariant.mkInt32 0;
+        };
+      };
+    }
+  ];
 
   home-manager.users = {
     delos = import ../../../home/users/delos;
