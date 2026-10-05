@@ -13,5 +13,6 @@
     ./ghostty.nix
     ./perforce.nix
     ./resilio.nix
+    ./rustdesk.nix
   ];
 }

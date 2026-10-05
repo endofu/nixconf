@@ -27,18 +27,21 @@
 
     desktop = {
       enable = true;
-      windowManager = "gnome";
+      windowManager = "xfce";
     };
     fonts.enable = true;
     teamviewer.enable = false;
     llm = {
-      enable = true;
+      enable = false;
       ollama = {
-        enable = true;
-        cuda = false;
+        enable = false;
       };
     };
     vnc.enable = false;
+    rustdesk = {
+      enable = true;
+      service.enable = true;
+    };
     tailscale.enable = true;
     opencode.enable = true;
     ghostty.enable = true;
@@ -98,6 +101,7 @@
   # Define users and their home-manager configurations
   users.users.delos = {
     isNormalUser = true;
+    linger = true;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -105,30 +109,102 @@
     ];
   };
 
-  services.xserver.displayManager.gdm.autoSuspend = false;
+  # Auto-start podman-compose projects on boot without requiring login
+  systemd.services.chirpstack-docker = {
+    description = "ChirpStack Docker Compose Service";
+    after = [
+      "network-online.target"
+      "user@1000.service"
+    ];
+    wants = [ "network-online.target" ];
+    requires = [ "user@1000.service" ];
+    wantedBy = [ "multi-user.target" ];
+    path = [
+      "/run/wrappers"
+      "/run/current-system/sw"
+      pkgs.podman
+      pkgs.podman-compose
+      pkgs.coreutils
+    ];
+    environment = {
+      HOME = "/home/delos";
+      XDG_RUNTIME_DIR = "/run/user/1000";
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = "delos";
+      WorkingDirectory = "/home/delos/Code/chirpstack-docker";
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose up -d";
+      ExecStop = "${pkgs.podman-compose}/bin/podman-compose down";
+      TimeoutStartSec = "300";
+    };
+  };
 
-  # 1. Completely disable systemd sleep/suspend/hibernation targets
+  systemd.services.evacuated-sim-backend = {
+    description = "Evacuated Sim Backend Compose Service";
+    after = [
+      "network-online.target"
+      "user@1000.service"
+      "chirpstack-docker.service"
+    ];
+    wants = [
+      "network-online.target"
+      "chirpstack-docker.service"
+    ];
+    requires = [
+      "user@1000.service"
+    ];
+    wantedBy = [ "multi-user.target" ];
+    path = [
+      "/run/wrappers"
+      "/run/current-system/sw"
+      pkgs.podman
+      pkgs.podman-compose
+      pkgs.coreutils
+    ];
+    environment = {
+      HOME = "/home/delos";
+      XDG_RUNTIME_DIR = "/run/user/1000";
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = "delos";
+      WorkingDirectory = "/home/delos/Code/evacuated-sim-backend";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose up -d";
+      ExecStop = "${pkgs.podman-compose}/bin/podman-compose down";
+      TimeoutStartSec = "300";
+    };
+  };
+
+  # Completely disable systemd sleep/suspend/hibernation targets
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  # 2. Tell systemd-logind not to suspend on idle or lid close
-  # services.logind.settings = {
-  #   IdleAction = "ignore";
-  # };
+  # Tell systemd sleep to disallow any sleep/suspend operations
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "no";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
 
-  # 3. Disable GDM's specific login screen power-saving suspend
-  programs.dconf.profiles.gdm.databases = [
-    {
-      settings = {
-        "org/gnome/settings-daemon/plugins/power" = {
-          sleep-inactive-ac-type = "nothing";
-          sleep-inactive-ac-timeout = lib.gvariant.mkInt32 0;
-        };
-      };
-    }
-  ];
+  # Prevent logind from sleeping on idle, lid close, or power/sleep keys
+  services.logind.settings.Login = {
+    IdleAction = "ignore";
+    HandleSuspendKey = "ignore";
+    HandleHibernateKey = "ignore";
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+
+  # Prevent Wi-Fi from going into power save mode
+  networking.networkmanager.wifi.powersave = false;
 
   home-manager.users = {
     delos = import ../../../home/users/delos;
@@ -139,6 +215,7 @@
     # Server-specific packages
     cifs-utils
     autorandr
+    xfce4-pulseaudio-plugin
   ];
 
   # Set your time zone.
