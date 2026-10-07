@@ -83,6 +83,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Power & sleep parameters for T2 stability
+  boot.kernelParams = [
+    "mem_sleep_default=s2idle"
+  ];
+
+  # Prevent black-screen freeze on lid close: lock session & turn off display instead of deep sleep
+  services.logind.settings.Login = {
+    HandleLidSwitch = "lock";
+    HandleLidSwitchExternalPower = "lock";
+    HandleLidSwitchDocked = "ignore";
+  };
+
   networking.hostName = "elysium";
 
   # Define users and their home-manager configurations
