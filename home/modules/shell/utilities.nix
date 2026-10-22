@@ -59,6 +59,7 @@ in
         # Basic utilities
         coreutils
         gnused
+        posting
         gawk
         gnugrep
         findutils
