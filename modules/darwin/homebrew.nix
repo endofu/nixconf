@@ -43,6 +43,7 @@ in
         "balenaetcher"
         "vlc"
         "antigravity"
+        "sublime-text"
         # "raspberry-pi-imager"
         "syntax-highlight"
         "elgato-studio"
