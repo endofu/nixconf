@@ -54,29 +54,10 @@ in
       #         ];
       #       };
 
-      #       initExtra = ''
-      #         # Additional zsh configuration
-      #
-      #         # Key bindings
-      #         bindkey '^[[A' history-substring-search-up
-      #         bindkey '^[[B' history-substring-search-down
-      #
-      #         # Aliases
-      #         alias ls='ls --color=auto'
-      #         alias ll='ls -la'
-      #         alias la='ls -A'
-      #         alias l='ls -CF'
-      #
-      #         # Custom functions
-      #         function mkcd() {
-      #           mkdir -p "$1" && cd "$1"
-      #         }
-      #
-      #         # Load local configuration if it exists
-      #         if [ -f ~/.zshrc.local ]; then
-      #           source ~/.zshrc.local
-      #         fi
-      #       '';
+      initContent = ''
+        # Increase file descriptor limit for Nix/Git cache operations
+        ulimit -n 8192 2>/dev/null || true
+      '';
 
       sessionVariables = {
         EDITOR = "nvim";
