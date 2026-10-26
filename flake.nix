@@ -1,15 +1,6 @@
 {
   description = "NixOS and Darwin configurations";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://cache.soopy.moe"
-    ];
-    extra-trusted-public-keys = [
-      "cache.soopy.moe-1:0RZVsQeR+GOh0VQI9rvnHz55nVXkFardDqfm4+afjPo="
-    ];
-  };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-2405.url = "github:NixOS/nixpkgs/nixos-24.05";
