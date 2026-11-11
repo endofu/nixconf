@@ -32,6 +32,7 @@ in
       flatbuffers
       tea
       mqttui
+      rainfrog
       #      gnumake
       #      gcc
       #      libgcc
