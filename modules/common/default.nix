@@ -11,6 +11,7 @@
     ./codex-cli.nix
     ./opencode.nix
     ./antigravity.nix
+    ./pi-coding-agent.nix
     ./ffmpeg.nix
     ./audacity.nix
     ./blender.nix

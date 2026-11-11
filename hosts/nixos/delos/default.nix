@@ -44,6 +44,7 @@
     };
     tailscale.enable = true;
     opencode.enable = true;
+    pi-coding-agent.enable = true;
     ghostty.enable = true;
     resilio = {
       enable = true;

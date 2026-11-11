@@ -48,6 +48,7 @@
     codex-cli.enable = false;
     opencode.enable = true;
     antigravity.cli.enable = true;
+    pi-coding-agent.enable = true;
     herdr.enable = true;
     linear.enable = true;
     mosquitto = {

@@ -55,6 +55,7 @@
     blender.enable = true;
     ghostty.enable = true;
     antigravity.cli.enable = true;
+    pi-coding-agent.enable = true;
     herdr.enable = true;
     linear.enable = true;
     mosquitto = {
