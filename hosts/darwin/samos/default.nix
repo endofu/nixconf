@@ -43,7 +43,12 @@
     tailscale.enable = true;
     netbird.enable = true;
     resilio.enable = true;
-    llm.enable = true;
+    llm = {
+      enable = true;
+      # Disabled while debugging random SPTM/AGX GPU kernel panics (macOS 27.2.1).
+      # Re-enable once the panics are ruled out as Ollama-related.
+      ollama.enable = false;
+    };
     codex.enable = false;
     codex-cli.enable = false;
     opencode.enable = true;
