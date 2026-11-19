@@ -29,13 +29,24 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
-    {
-      services.netbird = {
-        enable = true;
-        package = cfg.package;
-      };
-    }
-    (optionalAttrs (options ? homebrew) (mkIf cfg.ui.enable {
+    # Linux (NixOS): Native systemd service and packages
+    (mkIf (!pkgs.stdenv.hostPlatform.isDarwin) (mkMerge [
+      {
+        services.netbird = {
+          enable = true;
+          package = cfg.package;
+        };
+      }
+      (optionalAttrs (options.services.netbird ? ui) (mkIf cfg.ui.enable {
+        services.netbird.ui.enable = true;
+      }))
+    ]))
+
+    # Darwin (macOS): NetBird daemon and UI are managed via Homebrew.
+    # Nix's launchd daemon (org.nixos.netbird) conflicts with Homebrew's daemon (netbird),
+    # so we explicitly disable nix-darwin's services.netbird and rely on Homebrew.
+    (optionalAttrs (options ? homebrew) {
+      services.netbird.enable = mkForce false;
       homebrew = {
         taps = [
           {
@@ -43,20 +54,13 @@ in
             trusted = true;
           }
         ];
-        casks = [
+        brews = [
+          "netbirdio/tap/netbird"
+        ];
+        casks = mkIf cfg.ui.enable [
           "netbird-ui"
         ];
       };
-    }))
-    (optionalAttrs (options ? launchd) {
-      launchd.daemons.netbird.script = mkForce ''
-        mkdir -p /var/run/netbird /var/lib/netbird
-        ln -sf /var/run/netbird/sock /var/run/netbird.sock
-        exec ${cfg.package}/bin/netbird service run
-      '';
     })
-    (optionalAttrs (options.services.netbird ? ui) (mkIf cfg.ui.enable {
-      services.netbird.ui.enable = true;
-    }))
   ]);
 }
